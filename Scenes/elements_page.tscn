@@ -1,0 +1,269 @@
+[gd_scene format=3 uid="uid://8rj1wnwtdqa5"]
+
+[ext_resource type="PackedScene" uid="uid://cakv5d7f15xdg" path="res://Scenes/ElementButton.tscn" id="1_1p7re"]
+[ext_resource type="Theme" uid="uid://ctxtf6woho1hr" path="res://VSGTheme.tres" id="1_po8rl"]
+[ext_resource type="Script" uid="uid://ba5b2vra3mx8j" path="res://Scripts/Pages/elements_page.gd" id="2_ycdub"]
+[ext_resource type="Texture2D" uid="uid://dssojn77xrd2h" path="res://Textures/dot_alpha.png" id="3_3sjta"]
+[ext_resource type="Script" uid="uid://bq2kahh1iprok" path="res://Scripts/Pages/Elements/elements_content.gd" id="4_jemnp"]
+
+[node name="ElementsPage" type="Panel" unique_id=1081089266]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("1_po8rl")
+script = ExtResource("2_ycdub")
+
+[node name="ElementsList" type="VBoxContainer" parent="." unique_id=1152538464]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.11111111
+anchor_bottom = 1.0
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -1
+metadata/_edit_use_anchors_ = true
+
+[node name="SpaceButton" parent="ElementsList" unique_id=1578117527 instance=ExtResource("1_1p7re")]
+layout_mode = 2
+element_name = "Space"
+
+[node name="LineButton" parent="ElementsList" unique_id=984477460 instance=ExtResource("1_1p7re")]
+layout_mode = 2
+element = 1
+element_name = "Line"
+
+[node name="ShapeButton" parent="ElementsList" unique_id=1956672204 instance=ExtResource("1_1p7re")]
+layout_mode = 2
+element = 2
+element_name = "Shape"
+
+[node name="ToneButton" parent="ElementsList" unique_id=779264862 instance=ExtResource("1_1p7re")]
+layout_mode = 2
+element = 3
+element_name = "Tone"
+
+[node name="ColorButton" parent="ElementsList" unique_id=835235519 instance=ExtResource("1_1p7re")]
+layout_mode = 2
+element = 4
+element_name = "Color"
+
+[node name="MovementButton" parent="ElementsList" unique_id=23840038 instance=ExtResource("1_1p7re")]
+layout_mode = 2
+element = 5
+element_name = "Movement"
+
+[node name="RhythmButton" parent="ElementsList" unique_id=13183095 instance=ExtResource("1_1p7re")]
+layout_mode = 2
+element = 6
+element_name = "Rhythm"
+
+[node name="ElementsContent" type="Control" parent="." unique_id=1616468941]
+layout_mode = 1
+anchor_left = 0.11111111
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("4_jemnp")
+metadata/_edit_use_anchors_ = true
+
+[node name="ElementTitle" type="Control" parent="ElementsContent" unique_id=1662234645]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.1
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="ElementsContent/ElementTitle" unique_id=2054258455]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 16.0
+grow_vertical = 2
+texture = ExtResource("3_3sjta")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ElementLabel" type="Label" parent="ElementsContent/ElementTitle" unique_id=656481367]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 64.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Space"
+
+[node name="ElementDescription" type="Label" parent="ElementsContent/ElementTitle/ElementLabel" unique_id=998115923]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_bottom = 12.0
+grow_vertical = 0
+theme_type_variation = &"SubheadingLabel"
+theme_override_font_sizes/font_size = 8
+text = "text text text"
+
+[node name="Intensity" type="Control" parent="ElementsContent" unique_id=1556980468]
+layout_mode = 1
+anchor_top = 0.11
+anchor_right = 1.0
+anchor_bottom = 0.2
+grow_horizontal = 2
+
+[node name="IntensityLabel" type="Label" parent="ElementsContent/Intensity" unique_id=1486903515]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 17.0
+grow_horizontal = 2
+theme_type_variation = &"SubheadingLabel"
+text = "Intensity in this work"
+
+[node name="IntensityScale" type="HBoxContainer" parent="ElementsContent/Intensity" unique_id=1402612375]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="OneToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=1321002377]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_type_variation = &"ToggleButton"
+toggle_mode = true
+text = "1"
+
+[node name="TwoToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=1774551690]
+layout_mode = 2
+text = "2"
+
+[node name="ThreeToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=584852240]
+layout_mode = 2
+text = "3"
+
+[node name="FourToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=1964278853]
+layout_mode = 2
+text = "4"
+
+[node name="FiveToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=703438439]
+layout_mode = 2
+text = "5"
+
+[node name="Operation" type="Control" parent="ElementsContent" unique_id=669391526]
+layout_mode = 1
+anchor_top = 0.25
+anchor_right = 1.0
+anchor_bottom = 0.55
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OperationLabel" type="Label" parent="ElementsContent/Operation" unique_id=369058100]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+offset_bottom = 12.0
+grow_horizontal = 2
+theme_type_variation = &"SubheadingLabel"
+text = "HOW THIS ELEMENT OPERATES"
+
+[node name="OperationTextEdit" type="TextEdit" parent="ElementsContent/Operation" unique_id=231293513]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Describe how space functions in this work - its qualities, variations, and role in the visual strategy...
+"
+
+[node name="Relationships" type="Control" parent="ElementsContent" unique_id=638983024]
+layout_mode = 1
+anchor_top = 0.55
+anchor_right = 1.0
+anchor_bottom = 0.65
+grow_horizontal = 2
+
+[node name="RelationshipLabel" type="Label" parent="ElementsContent/Relationships" unique_id=1133081715]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 17.0
+grow_horizontal = 2
+theme_type_variation = &"SubheadingLabel"
+text = "Intensity in this work"
+
+[node name="RelationshipButtons" type="HBoxContainer" parent="ElementsContent/Relationships" unique_id=1361495290]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="OneToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1513056441]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_type_variation = &"ToggleButton"
+toggle_mode = true
+text = "1"
+
+[node name="TwoToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=619675625]
+layout_mode = 2
+text = "2"
+
+[node name="ThreeToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=926353861]
+layout_mode = 2
+text = "3"
+
+[node name="FourToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1707403977]
+layout_mode = 2
+text = "4"
+
+[node name="FiveToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1050670604]
+layout_mode = 2
+text = "5"
+
+[node name="Examples" type="Control" parent="ElementsContent" unique_id=1872018617]
+layout_mode = 1
+anchor_top = 0.7
+anchor_right = 1.0
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExamplesLabel" type="Label" parent="ElementsContent/Examples" unique_id=49372795]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+offset_bottom = 12.0
+grow_horizontal = 2
+theme_type_variation = &"SubheadingLabel"
+text = "HOW THIS ELEMENT OPERATES"
+
+[node name="ExamplesTextEdit" type="TextEdit" parent="ElementsContent/Examples" unique_id=708492521]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Describe how space functions in this work - its qualities, variations, and role in the visual strategy...
+"
