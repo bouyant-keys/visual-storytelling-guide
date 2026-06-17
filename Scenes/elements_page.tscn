@@ -5,6 +5,10 @@
 [ext_resource type="Script" uid="uid://ba5b2vra3mx8j" path="res://Scripts/Pages/elements_page.gd" id="2_ycdub"]
 [ext_resource type="Texture2D" uid="uid://dssojn77xrd2h" path="res://Textures/dot_alpha.png" id="3_3sjta"]
 [ext_resource type="Script" uid="uid://bq2kahh1iprok" path="res://Scripts/Pages/Elements/elements_content.gd" id="4_jemnp"]
+[ext_resource type="Script" uid="uid://c7cvpylallc7r" path="res://Scripts/Pages/Elements/element_title.gd" id="5_65khv"]
+[ext_resource type="Script" uid="uid://dcm4xak31oq8i" path="res://Scripts/Pages/Elements/element_intensity.gd" id="6_jemnp"]
+[ext_resource type="Script" uid="uid://b0neeas78cyyj" path="res://Scripts/Pages/Elements/intensity_toggle.gd" id="7_vtvwg"]
+[ext_resource type="PackedScene" uid="uid://bs1ohsd7vm0cx" path="res://Scripts/Pages/Elements/trinary_button.tscn" id="9_w1ppa"]
 
 [node name="ElementsPage" type="Panel" unique_id=1081089266]
 anchors_preset = 15
@@ -60,7 +64,7 @@ layout_mode = 2
 element = 6
 element_name = "Rhythm"
 
-[node name="ElementsContent" type="Control" parent="." unique_id=1616468941]
+[node name="ElementsContent" type="Control" parent="." unique_id=1616468941 node_paths=PackedStringArray("intensity_buttons")]
 layout_mode = 1
 anchor_left = 0.11111111
 anchor_right = 1.0
@@ -73,6 +77,7 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("4_jemnp")
+intensity_buttons = [NodePath("Intensity/IntensityScale/OneToggle"), NodePath("Intensity/IntensityScale/TwoToggle"), NodePath("Intensity/IntensityScale/ThreeToggle"), NodePath("Intensity/IntensityScale/FourToggle"), NodePath("Intensity/IntensityScale/FiveToggle")]
 metadata/_edit_use_anchors_ = true
 
 [node name="ElementTitle" type="Control" parent="ElementsContent" unique_id=1662234645]
@@ -80,8 +85,10 @@ layout_mode = 1
 anchor_right = 1.0
 anchor_bottom = 0.1
 grow_horizontal = 2
+script = ExtResource("5_65khv")
 
-[node name="TextureRect" type="TextureRect" parent="ElementsContent/ElementTitle" unique_id=2054258455]
+[node name="ElementTexture" type="TextureRect" parent="ElementsContent/ElementTitle" unique_id=2054258455]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -92,6 +99,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="ElementLabel" type="Label" parent="ElementsContent/ElementTitle" unique_id=656481367]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -102,6 +110,7 @@ theme_override_font_sizes/font_size = 20
 text = "Space"
 
 [node name="ElementDescription" type="Label" parent="ElementsContent/ElementTitle/ElementLabel" unique_id=998115923]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
@@ -112,29 +121,30 @@ theme_type_variation = &"SubheadingLabel"
 theme_override_font_sizes/font_size = 8
 text = "text text text"
 
-[node name="Intensity" type="Control" parent="ElementsContent" unique_id=1556980468]
+[node name="Intensity" type="Control" parent="ElementsContent" unique_id=1556980468 node_paths=PackedStringArray("intensity_buttons")]
 layout_mode = 1
 anchor_top = 0.11
 anchor_right = 1.0
 anchor_bottom = 0.2
 grow_horizontal = 2
+script = ExtResource("6_jemnp")
+intensity_buttons = [NodePath("IntensityScale/OneToggle"), NodePath("IntensityScale/TwoToggle"), NodePath("IntensityScale/ThreeToggle"), NodePath("IntensityScale/FourToggle"), NodePath("IntensityScale/FiveToggle")]
 
 [node name="IntensityLabel" type="Label" parent="ElementsContent/Intensity" unique_id=1486903515]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = -1
 anchor_right = 1.0
-offset_bottom = 17.0
+anchor_bottom = 0.3
 grow_horizontal = 2
 theme_type_variation = &"SubheadingLabel"
-text = "Intensity in this work"
+text = "INTENSITY IN THIS WORK"
 
 [node name="IntensityScale" type="HBoxContainer" parent="ElementsContent/Intensity" unique_id=1402612375]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = -1
+anchor_top = 0.3
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -32.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -144,22 +154,35 @@ layout_mode = 2
 theme_type_variation = &"ToggleButton"
 toggle_mode = true
 text = "1"
+script = ExtResource("7_vtvwg")
 
 [node name="TwoToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=1774551690]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+theme_type_variation = &"ToggleButton"
 text = "2"
+script = ExtResource("7_vtvwg")
 
 [node name="ThreeToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=584852240]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+theme_type_variation = &"ToggleButton"
 text = "3"
+script = ExtResource("7_vtvwg")
 
 [node name="FourToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=1964278853]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+theme_type_variation = &"ToggleButton"
 text = "4"
+script = ExtResource("7_vtvwg")
 
 [node name="FiveToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=703438439]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+theme_type_variation = &"ToggleButton"
 text = "5"
+script = ExtResource("7_vtvwg")
 
 [node name="Operation" type="Control" parent="ElementsContent" unique_id=669391526]
 layout_mode = 1
@@ -180,6 +203,7 @@ theme_type_variation = &"SubheadingLabel"
 text = "HOW THIS ELEMENT OPERATES"
 
 [node name="OperationTextEdit" type="TextEdit" parent="ElementsContent/Operation" unique_id=231293513]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.1
@@ -199,12 +223,12 @@ grow_horizontal = 2
 
 [node name="RelationshipLabel" type="Label" parent="ElementsContent/Relationships" unique_id=1133081715]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = -1
 anchor_right = 1.0
-offset_bottom = 17.0
+anchor_bottom = 0.3
 grow_horizontal = 2
 theme_type_variation = &"SubheadingLabel"
-text = "Intensity in this work"
+text = "ELEMENT RELATIONSHIPS"
 
 [node name="RelationshipButtons" type="HBoxContainer" parent="ElementsContent/Relationships" unique_id=1361495290]
 layout_mode = 1
@@ -216,26 +240,30 @@ offset_top = -32.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="OneToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1513056441]
-custom_minimum_size = Vector2(32, 32)
+[node name="SpaceToggle" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1351935258 instance=ExtResource("9_w1ppa")]
 layout_mode = 2
-theme_type_variation = &"ToggleButton"
-toggle_mode = true
-text = "1"
 
-[node name="TwoToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=619675625]
+[node name="LineToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=619675625]
 layout_mode = 2
-text = "2"
+text = "Line"
 
-[node name="ThreeToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=926353861]
+[node name="ShapeToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=926353861]
 layout_mode = 2
-text = "3"
+text = "Shape"
 
-[node name="FourToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1707403977]
+[node name="ToneToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1707403977]
 layout_mode = 2
-text = "4"
+text = "Tone"
 
-[node name="FiveToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1050670604]
+[node name="ColorToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1050670604]
+layout_mode = 2
+text = "5"
+
+[node name="MovementToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=806204629]
+layout_mode = 2
+text = "5"
+
+[node name="RhythmToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=843144856]
 layout_mode = 2
 text = "5"
 
@@ -258,6 +286,7 @@ theme_type_variation = &"SubheadingLabel"
 text = "HOW THIS ELEMENT OPERATES"
 
 [node name="ExamplesTextEdit" type="TextEdit" parent="ElementsContent/Examples" unique_id=708492521]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.1
@@ -267,3 +296,11 @@ grow_horizontal = 2
 grow_vertical = 2
 placeholder_text = "Describe how space functions in this work - its qualities, variations, and role in the visual strategy...
 "
+
+[connection signal="element_selected" from="ElementsList/SpaceButton" to="ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="ElementsList/LineButton" to="ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="ElementsList/ShapeButton" to="ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="ElementsList/ToneButton" to="ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="ElementsList/ColorButton" to="ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="ElementsList/MovementButton" to="ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="ElementsList/RhythmButton" to="ElementsContent" method="on_element_selected"]

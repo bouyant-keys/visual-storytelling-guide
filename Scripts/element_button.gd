@@ -7,6 +7,8 @@ extends Button
 @onready var label: Label = $Dot/Label
 @onready var progress_bar: ProgressBar = $Dot/ProgressBar
 
+signal element_selected(element:ConfigManager.VisualElements)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	label.text = element_name
@@ -20,16 +22,13 @@ func _ready() -> void:
 
 
 func _on_button_down() -> void:
-	pass # Replace with function body.
-
+	element_selected.emit(element)
 
 func _on_button_up() -> void:
 	pass # Replace with function body.
 
-
 func _on_highlight_enter() -> void:
 	pass # Replace with function body.
-
 
 func _on_highlight_exited() -> void:
 	pass # Replace with function body.
