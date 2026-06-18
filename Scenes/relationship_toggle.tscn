@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bs1ohsd7vm0cx"]
 
-[ext_resource type="Script" uid="uid://465j885wdkt3" path="res://Scripts/Pages/Elements/trinary_button.gd" id="1_jr4we"]
+[ext_resource type="Script" uid="uid://465j885wdkt3" path="res://Scripts/Pages/Elements/relationship_toggle.gd" id="1_jr4we"]
 
-[node name="TrinaryToggle" type="Button" unique_id=1351935258]
+[node name="RelationshipToggle" type="Button" unique_id=1351935258]
 custom_minimum_size = Vector2(32, 32)
+mouse_filter = 1
 theme_type_variation = &"ToggleButton"
-toggle_mode = true
 text = "Space"
 script = ExtResource("1_jr4we")
 

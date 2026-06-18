@@ -11,7 +11,13 @@ const ELEMENT_TONE_COLOR := Color("7ab5c9")
 const ELEMENT_COLOR_COLOR := Color("c4574a")
 const ELEMENT_MOVEMENT_COLOR := Color("5da06e")
 const ELEMENT_RHYTHM_COLOR := Color("c49c44")
+const RELATIONSHIP_AFFINITY_COLOR := Color("ae8a3e")
+const RELATIONSHIP_CONTRAST_COLOR := Color("be5448")
 
+var current_element : VisualElements
+
+func get_current_element_color() ->Color:
+	return get_element_color(current_element)
 func get_element_color(element:VisualElements) ->Color:
 	var e_color := ELEMENT_SPACE_COLOR
 	

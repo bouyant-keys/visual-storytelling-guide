@@ -4,303 +4,318 @@
 [ext_resource type="Theme" uid="uid://ctxtf6woho1hr" path="res://VSGTheme.tres" id="1_po8rl"]
 [ext_resource type="Script" uid="uid://ba5b2vra3mx8j" path="res://Scripts/Pages/elements_page.gd" id="2_ycdub"]
 [ext_resource type="Texture2D" uid="uid://dssojn77xrd2h" path="res://Textures/dot_alpha.png" id="3_3sjta"]
+[ext_resource type="Script" uid="uid://cjb54dabf35p5" path="res://Scripts/Pages/Elements/elements_list.gd" id="3_65khv"]
 [ext_resource type="Script" uid="uid://bq2kahh1iprok" path="res://Scripts/Pages/Elements/elements_content.gd" id="4_jemnp"]
-[ext_resource type="Script" uid="uid://c7cvpylallc7r" path="res://Scripts/Pages/Elements/element_title.gd" id="5_65khv"]
-[ext_resource type="Script" uid="uid://dcm4xak31oq8i" path="res://Scripts/Pages/Elements/element_intensity.gd" id="6_jemnp"]
-[ext_resource type="Script" uid="uid://b0neeas78cyyj" path="res://Scripts/Pages/Elements/intensity_toggle.gd" id="7_vtvwg"]
-[ext_resource type="PackedScene" uid="uid://bs1ohsd7vm0cx" path="res://Scripts/Pages/Elements/trinary_button.tscn" id="9_w1ppa"]
+[ext_resource type="PackedScene" uid="uid://bh4q16kxuaabc" path="res://Scenes/intensity_toggle.tscn" id="8_w1ppa"]
+[ext_resource type="PackedScene" uid="uid://bs1ohsd7vm0cx" path="res://Scenes/relationship_toggle.tscn" id="9_w1ppa"]
 
 [node name="ElementsPage" type="Panel" unique_id=1081089266]
+custom_minimum_size = Vector2(384, 256)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme = ExtResource("1_po8rl")
 script = ExtResource("2_ycdub")
+metadata/_edit_horizontal_guides_ = [64.0]
 
-[node name="ElementsList" type="VBoxContainer" parent="." unique_id=1152538464]
+[node name="HSplitContainer" type="HSplitContainer" parent="." unique_id=180159204]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.11111111
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
+split_offsets = PackedInt32Array(-512)
+split_offset = -512
+
+[node name="ElementsList" type="VBoxContainer" parent="HSplitContainer" unique_id=1152538464]
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = -1
+script = ExtResource("3_65khv")
 metadata/_edit_use_anchors_ = true
 
-[node name="SpaceButton" parent="ElementsList" unique_id=1578117527 instance=ExtResource("1_1p7re")]
+[node name="SpaceButton" parent="HSplitContainer/ElementsList" unique_id=1578117527 instance=ExtResource("1_1p7re")]
 layout_mode = 2
 element_name = "Space"
 
-[node name="LineButton" parent="ElementsList" unique_id=984477460 instance=ExtResource("1_1p7re")]
+[node name="LineButton" parent="HSplitContainer/ElementsList" unique_id=984477460 instance=ExtResource("1_1p7re")]
 layout_mode = 2
 element = 1
 element_name = "Line"
 
-[node name="ShapeButton" parent="ElementsList" unique_id=1956672204 instance=ExtResource("1_1p7re")]
+[node name="ShapeButton" parent="HSplitContainer/ElementsList" unique_id=1956672204 instance=ExtResource("1_1p7re")]
 layout_mode = 2
 element = 2
 element_name = "Shape"
 
-[node name="ToneButton" parent="ElementsList" unique_id=779264862 instance=ExtResource("1_1p7re")]
+[node name="ToneButton" parent="HSplitContainer/ElementsList" unique_id=779264862 instance=ExtResource("1_1p7re")]
 layout_mode = 2
 element = 3
 element_name = "Tone"
 
-[node name="ColorButton" parent="ElementsList" unique_id=835235519 instance=ExtResource("1_1p7re")]
+[node name="ColorButton" parent="HSplitContainer/ElementsList" unique_id=835235519 instance=ExtResource("1_1p7re")]
 layout_mode = 2
 element = 4
 element_name = "Color"
 
-[node name="MovementButton" parent="ElementsList" unique_id=23840038 instance=ExtResource("1_1p7re")]
+[node name="MovementButton" parent="HSplitContainer/ElementsList" unique_id=23840038 instance=ExtResource("1_1p7re")]
 layout_mode = 2
 element = 5
 element_name = "Movement"
 
-[node name="RhythmButton" parent="ElementsList" unique_id=13183095 instance=ExtResource("1_1p7re")]
+[node name="RhythmButton" parent="HSplitContainer/ElementsList" unique_id=13183095 instance=ExtResource("1_1p7re")]
 layout_mode = 2
 element = 6
 element_name = "Rhythm"
 
-[node name="ElementsContent" type="Control" parent="." unique_id=1616468941 node_paths=PackedStringArray("intensity_buttons")]
-layout_mode = 1
-anchor_left = 0.11111111
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = 12.0
-offset_right = -12.0
-offset_bottom = -12.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="ElementsContent" type="Control" parent="HSplitContainer" unique_id=1616468941 node_paths=PackedStringArray("intensity_buttons", "relationship_buttons")]
+clip_contents = true
+custom_minimum_size = Vector2(512, 256)
+layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 script = ExtResource("4_jemnp")
 intensity_buttons = [NodePath("Intensity/IntensityScale/OneToggle"), NodePath("Intensity/IntensityScale/TwoToggle"), NodePath("Intensity/IntensityScale/ThreeToggle"), NodePath("Intensity/IntensityScale/FourToggle"), NodePath("Intensity/IntensityScale/FiveToggle")]
+relationship_buttons = [NodePath("Relationships/RelationshipButtons/SpaceToggle"), NodePath("Relationships/RelationshipButtons/LineToggle"), NodePath("Relationships/RelationshipButtons/ShapeToggle"), NodePath("Relationships/RelationshipButtons/ToneToggle"), NodePath("Relationships/RelationshipButtons/ColorToggle"), NodePath("Relationships/RelationshipButtons/MovementToggle"), NodePath("Relationships/RelationshipButtons/RhythmToggle")]
 metadata/_edit_use_anchors_ = true
 
-[node name="ElementTitle" type="Control" parent="ElementsContent" unique_id=1662234645]
+[node name="ElementTitle" type="Control" parent="HSplitContainer/ElementsContent" unique_id=1662234645]
 layout_mode = 1
 anchor_right = 1.0
 anchor_bottom = 0.1
+offset_top = 8.0
+offset_right = -12.0
 grow_horizontal = 2
-script = ExtResource("5_65khv")
+mouse_filter = 2
 
-[node name="ElementTexture" type="TextureRect" parent="ElementsContent/ElementTitle" unique_id=2054258455]
+[node name="ElementTexture" type="TextureRect" parent="HSplitContainer/ElementsContent/ElementTitle" unique_id=2054258455]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 16.0
 grow_vertical = 2
 texture = ExtResource("3_3sjta")
-expand_mode = 3
+expand_mode = 5
 stretch_mode = 5
 
-[node name="ElementLabel" type="Label" parent="ElementsContent/ElementTitle" unique_id=656481367]
+[node name="ElementLabel" type="Label" parent="HSplitContainer/ElementsContent/ElementTitle/ElementTexture" unique_id=656481367]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
+anchor_left = 1.0
 anchor_top = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 64.0
-grow_vertical = 2
+offset_left = 4.0
+grow_vertical = 0
 theme_override_font_sizes/font_size = 20
 text = "Space"
 
-[node name="ElementDescription" type="Label" parent="ElementsContent/ElementTitle/ElementLabel" unique_id=998115923]
+[node name="ElementDescription" type="Label" parent="HSplitContainer/ElementsContent/ElementTitle/ElementTexture" unique_id=998115923]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_bottom = 12.0
-grow_vertical = 0
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 4.0
 theme_type_variation = &"SubheadingLabel"
 theme_override_font_sizes/font_size = 8
 text = "text text text"
 
-[node name="Intensity" type="Control" parent="ElementsContent" unique_id=1556980468 node_paths=PackedStringArray("intensity_buttons")]
+[node name="Intensity" type="Control" parent="HSplitContainer/ElementsContent" unique_id=1556980468]
 layout_mode = 1
-anchor_top = 0.11
+anchor_top = 0.12
 anchor_right = 1.0
-anchor_bottom = 0.2
+anchor_bottom = 0.12
+offset_right = -12.0
 grow_horizontal = 2
-script = ExtResource("6_jemnp")
-intensity_buttons = [NodePath("IntensityScale/OneToggle"), NodePath("IntensityScale/TwoToggle"), NodePath("IntensityScale/ThreeToggle"), NodePath("IntensityScale/FourToggle"), NodePath("IntensityScale/FiveToggle")]
+mouse_filter = 2
 
-[node name="IntensityLabel" type="Label" parent="ElementsContent/Intensity" unique_id=1486903515]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.3
-grow_horizontal = 2
-theme_type_variation = &"SubheadingLabel"
-text = "INTENSITY IN THIS WORK"
-
-[node name="IntensityScale" type="HBoxContainer" parent="ElementsContent/Intensity" unique_id=1402612375]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.3
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="OneToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=1321002377]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-theme_type_variation = &"ToggleButton"
-toggle_mode = true
-text = "1"
-script = ExtResource("7_vtvwg")
-
-[node name="TwoToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=1774551690]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-theme_type_variation = &"ToggleButton"
-text = "2"
-script = ExtResource("7_vtvwg")
-
-[node name="ThreeToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=584852240]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-theme_type_variation = &"ToggleButton"
-text = "3"
-script = ExtResource("7_vtvwg")
-
-[node name="FourToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=1964278853]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-theme_type_variation = &"ToggleButton"
-text = "4"
-script = ExtResource("7_vtvwg")
-
-[node name="FiveToggle" type="Button" parent="ElementsContent/Intensity/IntensityScale" unique_id=703438439]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-theme_type_variation = &"ToggleButton"
-text = "5"
-script = ExtResource("7_vtvwg")
-
-[node name="Operation" type="Control" parent="ElementsContent" unique_id=669391526]
-layout_mode = 1
-anchor_top = 0.25
-anchor_right = 1.0
-anchor_bottom = 0.55
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="OperationLabel" type="Label" parent="ElementsContent/Operation" unique_id=369058100]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.1
-offset_bottom = 12.0
-grow_horizontal = 2
-theme_type_variation = &"SubheadingLabel"
-text = "HOW THIS ELEMENT OPERATES"
-
-[node name="OperationTextEdit" type="TextEdit" parent="ElementsContent/Operation" unique_id=231293513]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-placeholder_text = "Describe how space functions in this work - its qualities, variations, and role in the visual strategy...
-"
-
-[node name="Relationships" type="Control" parent="ElementsContent" unique_id=638983024]
-layout_mode = 1
-anchor_top = 0.55
-anchor_right = 1.0
-anchor_bottom = 0.65
-grow_horizontal = 2
-
-[node name="RelationshipLabel" type="Label" parent="ElementsContent/Relationships" unique_id=1133081715]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.3
-grow_horizontal = 2
-theme_type_variation = &"SubheadingLabel"
-text = "ELEMENT RELATIONSHIPS"
-
-[node name="RelationshipButtons" type="HBoxContainer" parent="ElementsContent/Relationships" unique_id=1361495290]
+[node name="IntensityLabel" type="Label" parent="HSplitContainer/ElementsContent/Intensity" unique_id=1486903515]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -32.0
+offset_top = -12.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_type_variation = &"SubheadingLabel"
+text = "INTENSITY IN THIS WORK"
 
-[node name="SpaceToggle" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1351935258 instance=ExtResource("9_w1ppa")]
-layout_mode = 2
-
-[node name="LineToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=619675625]
-layout_mode = 2
-text = "Line"
-
-[node name="ShapeToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=926353861]
-layout_mode = 2
-text = "Shape"
-
-[node name="ToneToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1707403977]
-layout_mode = 2
-text = "Tone"
-
-[node name="ColorToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=1050670604]
-layout_mode = 2
-text = "5"
-
-[node name="MovementToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=806204629]
-layout_mode = 2
-text = "5"
-
-[node name="RhythmToggle" type="Button" parent="ElementsContent/Relationships/RelationshipButtons" unique_id=843144856]
-layout_mode = 2
-text = "5"
-
-[node name="Examples" type="Control" parent="ElementsContent" unique_id=1872018617]
+[node name="IntensityScale" type="HBoxContainer" parent="HSplitContainer/ElementsContent/Intensity" unique_id=1402612375]
 layout_mode = 1
-anchor_top = 0.7
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.9
+offset_bottom = 32.0
+grow_horizontal = 2
+
+[node name="OneToggle" parent="HSplitContainer/ElementsContent/Intensity/IntensityScale" unique_id=1652520252 instance=ExtResource("8_w1ppa")]
+layout_mode = 2
+
+[node name="TwoToggle" parent="HSplitContainer/ElementsContent/Intensity/IntensityScale" unique_id=906410987 instance=ExtResource("8_w1ppa")]
+layout_mode = 2
+text = "2"
+intensity_value = 2
+
+[node name="ThreeToggle" parent="HSplitContainer/ElementsContent/Intensity/IntensityScale" unique_id=1610477655 instance=ExtResource("8_w1ppa")]
+layout_mode = 2
+text = "3"
+intensity_value = 3
+
+[node name="FourToggle" parent="HSplitContainer/ElementsContent/Intensity/IntensityScale" unique_id=1071044615 instance=ExtResource("8_w1ppa")]
+layout_mode = 2
+text = "4"
+intensity_value = 4
+
+[node name="FiveToggle" parent="HSplitContainer/ElementsContent/Intensity/IntensityScale" unique_id=1305914340 instance=ExtResource("8_w1ppa")]
+layout_mode = 2
+text = "5"
+intensity_value = 5
+
+[node name="Operation" type="Control" parent="HSplitContainer/ElementsContent" unique_id=669391526]
+layout_mode = 1
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 0.4
+offset_top = 8.0
+offset_right = -12.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="ExamplesLabel" type="Label" parent="ElementsContent/Examples" unique_id=49372795]
+[node name="OperationLabel" type="Label" parent="HSplitContainer/ElementsContent/Operation" unique_id=369058100]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 0.1
-offset_bottom = 12.0
 grow_horizontal = 2
+grow_vertical = 0
 theme_type_variation = &"SubheadingLabel"
 text = "HOW THIS ELEMENT OPERATES"
 
-[node name="ExamplesTextEdit" type="TextEdit" parent="ElementsContent/Examples" unique_id=708492521]
+[node name="OperationTextEdit" type="TextEdit" parent="HSplitContainer/ElementsContent/Operation" unique_id=231293513]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 72)
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 placeholder_text = "Describe how space functions in this work - its qualities, variations, and role in the visual strategy...
 "
+scroll_fit_content_width = true
 
-[connection signal="element_selected" from="ElementsList/SpaceButton" to="ElementsContent" method="on_element_selected"]
-[connection signal="element_selected" from="ElementsList/LineButton" to="ElementsContent" method="on_element_selected"]
-[connection signal="element_selected" from="ElementsList/ShapeButton" to="ElementsContent" method="on_element_selected"]
-[connection signal="element_selected" from="ElementsList/ToneButton" to="ElementsContent" method="on_element_selected"]
-[connection signal="element_selected" from="ElementsList/ColorButton" to="ElementsContent" method="on_element_selected"]
-[connection signal="element_selected" from="ElementsList/MovementButton" to="ElementsContent" method="on_element_selected"]
-[connection signal="element_selected" from="ElementsList/RhythmButton" to="ElementsContent" method="on_element_selected"]
+[node name="Relationships" type="Control" parent="HSplitContainer/ElementsContent" unique_id=638983024]
+layout_mode = 1
+anchor_top = 0.42
+anchor_right = 1.0
+anchor_bottom = 0.42
+offset_top = 18.839996
+offset_right = -12.0
+offset_bottom = 18.839996
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="RelationshipLabel" type="Label" parent="HSplitContainer/ElementsContent/Relationships" unique_id=1133081715]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"SubheadingLabel"
+text = "ELEMENT RELATIONSHIPS - NEUTRAL > AFFINITY > CONTRAST"
+
+[node name="RelationshipButtons" type="HBoxContainer" parent="HSplitContainer/ElementsContent/Relationships" unique_id=1361495290]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+
+[node name="SpaceToggle" parent="HSplitContainer/ElementsContent/Relationships/RelationshipButtons" unique_id=1351935258 instance=ExtResource("9_w1ppa")]
+layout_mode = 2
+
+[node name="LineToggle" parent="HSplitContainer/ElementsContent/Relationships/RelationshipButtons" unique_id=1527984983 instance=ExtResource("9_w1ppa")]
+layout_mode = 2
+text = "Line"
+button_element = 1
+
+[node name="ShapeToggle" parent="HSplitContainer/ElementsContent/Relationships/RelationshipButtons" unique_id=736023847 instance=ExtResource("9_w1ppa")]
+layout_mode = 2
+text = "Shape"
+button_element = 2
+
+[node name="ToneToggle" parent="HSplitContainer/ElementsContent/Relationships/RelationshipButtons" unique_id=109885298 instance=ExtResource("9_w1ppa")]
+layout_mode = 2
+text = "Tone"
+button_element = 3
+
+[node name="ColorToggle" parent="HSplitContainer/ElementsContent/Relationships/RelationshipButtons" unique_id=1463395764 instance=ExtResource("9_w1ppa")]
+layout_mode = 2
+text = "Color"
+button_element = 4
+
+[node name="MovementToggle" parent="HSplitContainer/ElementsContent/Relationships/RelationshipButtons" unique_id=1027137663 instance=ExtResource("9_w1ppa")]
+layout_mode = 2
+text = "Movement"
+button_element = 5
+
+[node name="RhythmToggle" parent="HSplitContainer/ElementsContent/Relationships/RelationshipButtons" unique_id=1705828930 instance=ExtResource("9_w1ppa")]
+layout_mode = 2
+text = "Rhythm"
+button_element = 6
+
+[node name="Examples" type="Control" parent="HSplitContainer/ElementsContent" unique_id=1872018617]
+layout_mode = 1
+anchor_top = 0.55
+anchor_right = 1.0
+anchor_bottom = 0.75
+offset_right = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ExamplesLabel" type="Label" parent="HSplitContainer/ElementsContent/Examples" unique_id=49372795]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+grow_vertical = 0
+theme_type_variation = &"SubheadingLabel"
+text = "HOW THIS ELEMENT OPERATES"
+
+[node name="ExamplesTextEdit" type="TextEdit" parent="HSplitContainer/ElementsContent/Examples" unique_id=708492521]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+placeholder_text = "Describe how space functions in this work - its qualities, variations, and role in the visual strategy...
+"
+scroll_fit_content_width = true
+
+[connection signal="element_selected" from="HSplitContainer/ElementsList/SpaceButton" to="HSplitContainer/ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="HSplitContainer/ElementsList/LineButton" to="HSplitContainer/ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="HSplitContainer/ElementsList/ShapeButton" to="HSplitContainer/ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="HSplitContainer/ElementsList/ToneButton" to="HSplitContainer/ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="HSplitContainer/ElementsList/ColorButton" to="HSplitContainer/ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="HSplitContainer/ElementsList/MovementButton" to="HSplitContainer/ElementsContent" method="on_element_selected"]
+[connection signal="element_selected" from="HSplitContainer/ElementsList/RhythmButton" to="HSplitContainer/ElementsContent" method="on_element_selected"]

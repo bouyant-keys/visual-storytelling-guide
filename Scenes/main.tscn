@@ -4,21 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://dssojn77xrd2h" path="res://Textures/dot_alpha.png" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://8rj1wnwtdqa5" path="res://Scenes/elements_page.tscn" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://b1ggsw15ycj8y" path="res://Scripts/Pages/page_manager.gd" id="3_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://coiltf268mo5c" path="res://Scripts/Pages/Map/map_page.tscn" id="5_6bp64"]
+[ext_resource type="PackedScene" uid="uid://ha3jot66ngcp" path="res://Scripts/Pages/synthesis_page.tscn" id="6_344ge"]
+[ext_resource type="Script" uid="uid://dlgijxso567lc" path="res://Scripts/file_dialog.gd" id="8_344ge"]
 
 [node name="Main" type="Node" unique_id=1253172053]
 metadata/_edit_horizontal_guides_ = [32.0, 64.0, 128.0]
 metadata/_edit_vertical_guides_ = [128.0, 578.0]
 
-[node name="Control" type="Control" parent="." unique_id=1072769691]
+[node name="Application" type="Control" parent="." unique_id=1072769691]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_8gbba")
 
-[node name="Background" type="ColorRect" parent="Control" unique_id=1978142818]
+[node name="Background" type="ColorRect" parent="Application" unique_id=1978142818]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,15 +31,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.039215688, 0.050980393, 0.07058824, 1)
 
-[node name="TitleBar" type="Panel" parent="Control" unique_id=608895976]
+[node name="TitleBar" type="Panel" parent="Application" unique_id=608895976]
 layout_mode = 0
 anchor_left = 0.0034722222
 anchor_top = 0.0061728396
 anchor_right = 0.9965278
 anchor_bottom = 0.044753086
-metadata/_edit_use_anchors_ = true
+mouse_filter = 2
 
-[node name="TitleControl" type="Control" parent="Control/TitleBar" unique_id=369013137]
+[node name="TitleControl" type="Control" parent="Application/TitleBar" unique_id=369013137]
 modulate = Color(0.3019608, 0.5137255, 0.76862746, 1)
 layout_mode = 1
 anchors_preset = 4
@@ -43,8 +47,9 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 4.0
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="TitleIcon" type="TextureRect" parent="Control/TitleBar/TitleControl" unique_id=796263403]
+[node name="TitleIcon" type="TextureRect" parent="Application/TitleBar/TitleControl" unique_id=796263403]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -55,7 +60,7 @@ offset_bottom = 8.0
 grow_vertical = 2
 texture = ExtResource("1_bo1nx")
 
-[node name="TitleLabel" type="Label" parent="Control/TitleBar/TitleControl" unique_id=616851993]
+[node name="TitleLabel" type="Label" parent="Application/TitleBar/TitleControl" unique_id=616851993]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -64,40 +69,71 @@ offset_left = 20.0
 grow_vertical = 2
 text = "Visual Stroytelling Review"
 
-[node name="TabBar" type="TabBar" parent="Control" unique_id=304324529]
-layout_mode = 0
-anchor_left = 0.0034722222
-anchor_top = 0.055555556
-anchor_right = 0.9965278
-anchor_bottom = 0.10339506
+[node name="Control" type="Control" parent="Application" unique_id=1493567589]
+layout_mode = 1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.1
+
+[node name="TabBar" type="TabBar" parent="Application/Control" unique_id=304324529]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+grow_horizontal = 2
+grow_vertical = 2
 current_tab = 0
 close_with_middle_mouse = false
-tab_count = 4
-tab_0/title = "ELEMENTS"
-tab_1/title = "MAP"
-tab_2/title = "SYNTHESIS"
-tab_3/title = "EXPORT"
-metadata/_edit_use_anchors_ = true
+tab_count = 3
+tab_0/title = "  ELEMENTS  "
+tab_1/title = "  MAP  "
+tab_2/title = "  SYNTHESIS  "
 
-[node name="HeaderPanel" type="Panel" parent="Control" unique_id=1686507536]
+[node name="ImportButton" type="Button" parent="Application/Control" unique_id=349908486]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_right = 0.95
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_type_variation = &"ToggleButton"
+text = "Import"
+
+[node name="ExportButton" type="Button" parent="Application/Control" unique_id=777984181]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.95
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -4.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_type_variation = &"ToggleButton"
+text = "Export"
+
+[node name="HeaderPanel" type="Panel" parent="Application" unique_id=1686507536]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0034722222
 anchor_top = 0.10339506
 anchor_right = 0.9965278
 anchor_bottom = 0.19290124
+mouse_filter = 2
 theme_type_variation = &"HeaderPanel"
-metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="Control" parent="Control/HeaderPanel" unique_id=607676053]
+[node name="Title" type="Control" parent="Application/HeaderPanel" unique_id=607676053]
 layout_mode = 1
 anchor_left = 0.01
 anchor_right = 0.24
 anchor_bottom = 1.0
 size_flags_horizontal = 3
-metadata/_edit_use_anchors_ = true
+mouse_filter = 2
 
-[node name="TitleLabel" type="Label" parent="Control/HeaderPanel/Title" unique_id=855136677]
+[node name="TitleLabel" type="Label" parent="Application/HeaderPanel/Title" unique_id=855136677]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -110,7 +146,7 @@ theme_override_font_sizes/font_size = 8
 text = "TITLE"
 vertical_alignment = 2
 
-[node name="TitleEdit" type="LineEdit" parent="Control/HeaderPanel/Title" unique_id=326148022]
+[node name="TitleEdit" type="LineEdit" parent="Application/HeaderPanel/Title" unique_id=326148022]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -122,14 +158,14 @@ grow_vertical = 2
 size_flags_horizontal = 3
 placeholder_text = "Production Title"
 
-[node name="Type" type="Control" parent="Control/HeaderPanel" unique_id=794499161]
+[node name="Type" type="Control" parent="Application/HeaderPanel" unique_id=794499161]
 layout_mode = 1
 anchor_left = 0.25
 anchor_right = 0.39
 anchor_bottom = 1.0
-metadata/_edit_use_anchors_ = true
+mouse_filter = 2
 
-[node name="TypeLabel" type="Label" parent="Control/HeaderPanel/Type" unique_id=1652268491]
+[node name="TypeLabel" type="Label" parent="Application/HeaderPanel/Type" unique_id=1652268491]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -142,7 +178,7 @@ theme_override_font_sizes/font_size = 8
 text = "TYPE"
 vertical_alignment = 2
 
-[node name="TypeDropdown" type="OptionButton" parent="Control/HeaderPanel/Type" unique_id=1055729436]
+[node name="TypeDropdown" type="OptionButton" parent="Application/HeaderPanel/Type" unique_id=1055729436]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.44827586
@@ -171,14 +207,14 @@ popup/item_7/text = "Other"
 popup/item_7/id = 7
 metadata/_edit_use_anchors_ = true
 
-[node name="Creator" type="Control" parent="Control/HeaderPanel" unique_id=156344219]
+[node name="Creator" type="Control" parent="Application/HeaderPanel" unique_id=156344219]
 layout_mode = 1
 anchor_left = 0.4
 anchor_right = 0.54
 anchor_bottom = 1.0
-metadata/_edit_use_anchors_ = true
+mouse_filter = 2
 
-[node name="CreatorLabel" type="Label" parent="Control/HeaderPanel/Creator" unique_id=2038388865]
+[node name="CreatorLabel" type="Label" parent="Application/HeaderPanel/Creator" unique_id=2038388865]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -191,7 +227,7 @@ theme_override_font_sizes/font_size = 8
 text = "CREATOR"
 vertical_alignment = 2
 
-[node name="CreatorEdit" type="LineEdit" parent="Control/HeaderPanel/Creator" unique_id=303181273]
+[node name="CreatorEdit" type="LineEdit" parent="Application/HeaderPanel/Creator" unique_id=303181273]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -203,7 +239,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 placeholder_text = "Name"
 
-[node name="Year" type="Control" parent="Control/HeaderPanel" unique_id=1337996288]
+[node name="Year" type="Control" parent="Application/HeaderPanel" unique_id=1337996288]
 layout_mode = 1
 anchor_left = 0.55
 anchor_right = 0.64
@@ -211,9 +247,9 @@ anchor_bottom = 1.0
 offset_left = 6.1035156e-05
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+mouse_filter = 2
 
-[node name="YearLabel" type="Label" parent="Control/HeaderPanel/Year" unique_id=1325583285]
+[node name="YearLabel" type="Label" parent="Application/HeaderPanel/Year" unique_id=1325583285]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -226,7 +262,7 @@ theme_override_font_sizes/font_size = 8
 text = "YEAR"
 vertical_alignment = 2
 
-[node name="YearEdit" type="LineEdit" parent="Control/HeaderPanel/Year" unique_id=452568702]
+[node name="YearEdit" type="LineEdit" parent="Application/HeaderPanel/Year" unique_id=452568702]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -238,16 +274,16 @@ grow_vertical = 2
 size_flags_horizontal = 3
 placeholder_text = "YYYY"
 
-[node name="Synopsis" type="Control" parent="Control/HeaderPanel" unique_id=74403698]
+[node name="Synopsis" type="Control" parent="Application/HeaderPanel" unique_id=74403698]
 layout_mode = 1
 anchor_left = 0.65
 anchor_right = 0.99
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
+mouse_filter = 2
 
-[node name="SynopsisLabel" type="Label" parent="Control/HeaderPanel/Synopsis" unique_id=1711747978]
+[node name="SynopsisLabel" type="Label" parent="Application/HeaderPanel/Synopsis" unique_id=1711747978]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -260,7 +296,7 @@ theme_override_font_sizes/font_size = 8
 text = "SYNOPSIS / LOGLINE"
 vertical_alignment = 2
 
-[node name="SynopsisEdit" type="LineEdit" parent="Control/HeaderPanel/Synopsis" unique_id=1479403051]
+[node name="SynopsisEdit" type="LineEdit" parent="Application/HeaderPanel/Synopsis" unique_id=1479403051]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -272,17 +308,50 @@ grow_vertical = 2
 size_flags_horizontal = 3
 placeholder_text = "Brief synopsis or logline for context"
 
-[node name="PageManager" type="Control" parent="Control" unique_id=960825847]
+[node name="PageManager" type="Control" parent="Application" unique_id=960825847]
 layout_mode = 1
 anchor_top = 0.19753087
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("3_jjvhh")
-metadata/_edit_use_anchors_ = true
 
-[node name="ElementsPage" parent="Control/PageManager" unique_id=1081089266 instance=ExtResource("3_8gbba")]
+[node name="ElementsPage" parent="Application/PageManager" unique_id=1081089266 instance=ExtResource("3_8gbba")]
+unique_name_in_owner = true
 layout_mode = 1
 
-[connection signal="tab_changed" from="Control/TabBar" to="Control/PageManager" method="_on_tab_changed"]
+[node name="MapPage" parent="Application/PageManager" unique_id=2010936638 instance=ExtResource("5_6bp64")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="SynthesisPage" parent="Application/PageManager" unique_id=818470318 instance=ExtResource("6_344ge")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=1480375612]
+unique_name_in_owner = true
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+access = 2
+filters = PackedStringArray("*.txt", "*.json", "*.JSON")
+use_native_dialog = true
+script = ExtResource("8_344ge")
+
+[connection signal="tab_changed" from="Application/Control/TabBar" to="Application/PageManager" method="_on_tab_changed"]
+[connection signal="pressed" from="Application/Control/ImportButton" to="FileDialog" method="import_review"]
+[connection signal="pressed" from="Application/Control/ExportButton" to="FileDialog" method="export_review"]
+[connection signal="file_selected" from="FileDialog" to="FileDialog" method="_on_file_selected"]

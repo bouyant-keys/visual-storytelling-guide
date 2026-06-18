@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bh4q16kxuaabc"]
+
+[ext_resource type="Script" uid="uid://b0neeas78cyyj" path="res://Scripts/Pages/Elements/intensity_toggle.gd" id="1_2lc5v"]
+[ext_resource type="Theme" uid="uid://ctxtf6woho1hr" path="res://VSGTheme.tres" id="1_a6754"]
+
+[node name="IntensityToggle" type="Button" unique_id=1652520252]
+custom_minimum_size = Vector2(32, 32)
+mouse_filter = 1
+theme = ExtResource("1_a6754")
+theme_type_variation = &"ToggleButton"
+toggle_mode = true
+text = "1"
+script = ExtResource("1_2lc5v")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,4 +1,15 @@
 {
+	"Project" : {
+		"Author" : "",
+		"CreationDate" : "",
+	},
+	"Subject" : {
+		"Title" : "",
+		"Type" : "",
+		"Creator" : "",
+		"Year" : "",
+		"Synopsis" : "",
+	},
 	"Elements" : {
 		"Space" : {
 			"Description" : "Positive/Negative • Depth • Scale • Proximity",
@@ -50,4 +61,6 @@
 			"Examples" : "",
 		},
 	},
+	"Map" : {},
+	"Synthesis" : {}
 }

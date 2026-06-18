@@ -47,7 +47,7 @@ bg_color = Color(0.08627451, 0.09803922, 0.14509805, 1)
 corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjgbg"]
-bg_color = Color(0.039215688, 0.050980393, 0.07058824, 1)
+bg_color = Color(0.05882353, 0.06666667, 0.09411765, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -84,6 +84,22 @@ bg_color = Color(0.14600113, 0.17073232, 0.21197829, 1)
 bg_color = Color(0.1254902, 0.14509805, 0.21568628, 1)
 border_width_bottom = 4
 border_color = Color(0.3019608, 0.5137255, 0.76862746, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_34hxa"]
+bg_color = Color(0.039215688, 0.050980393, 0.07058824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.15294118, 0.1764706, 0.25882354, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qej1i"]
+bg_color = Color(0.039215688, 0.050980393, 0.07058824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.15294118, 0.1764706, 0.25882354, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jq4w8"]
 bg_color = Color(0.15518677, 0.17011636, 0.25451666, 1)
@@ -133,7 +149,6 @@ ProgressBar/styles/background = SubResource("StyleBoxFlat_ri0dv")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_vi02w")
 SubheadingLabel/base_type = &"Label"
 SubheadingLabel/font_sizes/font_size = 8
-TabBar/constants/tab_separation = 32
 TabBar/font_sizes/font_size = 12
 TabBar/fonts/font = ExtResource("1_1w2cu")
 TabBar/styles/tab_disabled = SubResource("StyleBoxFlat_4yyan")
@@ -142,6 +157,8 @@ TabBar/styles/tab_selected = SubResource("StyleBoxFlat_bo1nx")
 TabBar/styles/tab_unselected = SubResource("StyleBoxFlat_4yyan")
 TextEdit/font_sizes/font_size = 12
 TextEdit/fonts/font = ExtResource("1_1w2cu")
+TextEdit/styles/focus = SubResource("StyleBoxFlat_34hxa")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_qej1i")
 ToggleButton/base_type = &"Button"
 ToggleButton/font_sizes/font_size = 12
 ToggleButton/fonts/font = ExtResource("1_1w2cu")

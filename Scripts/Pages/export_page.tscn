@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://oj22s2h21tdw"]
+
+[ext_resource type="Script" uid="uid://dqam2met5p8rc" path="res://Scripts/Pages/export_page.gd" id="1_o2pd0"]
+
+[node name="ExportPage" type="Panel" unique_id=680253808]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_o2pd0")
+
+[node name="ExportButton" type="Button" parent="." unique_id=897910774]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 12.0
+offset_top = 12.0
+text = "Export Review"
+
+[node name="FileDialog" type="FileDialog" parent="." unique_id=1018146282]
+oversampling_override = 1.0
+position = Vector2i(0, 36)
+access = 2
+filters = PackedStringArray("*.txt", "*.json", "*.JSON")
+use_native_dialog = true
+
+[connection signal="pressed" from="ExportButton" to="." method="_on_export_button_pressed"]
+[connection signal="canceled" from="FileDialog" to="." method="_on_file_dialog_canceled"]
+[connection signal="confirmed" from="FileDialog" to="." method="_on_file_dialog_confirmed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
