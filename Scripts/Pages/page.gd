@@ -1,6 +1,7 @@
 class_name Page extends Panel
 
+var page_key : String
+var page_data : Dictionary
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func get_page_key() ->String: return page_key
+func get_page_data() ->Dictionary: return page_data

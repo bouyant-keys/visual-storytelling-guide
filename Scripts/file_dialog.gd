@@ -10,11 +10,13 @@ func export_review() ->void:
 	exporting = true
 	title = "Export Review As"
 	file_mode = FileDialog.FILE_MODE_SAVE_FILE
+	popup_file_dialog()
 
 func import_review() ->void:
 	exporting = false
 	title = "Load Review"
 	file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	popup_file_dialog()
 
 
 func _on_file_selected(path: String) -> void:

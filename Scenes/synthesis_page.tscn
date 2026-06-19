@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://ha3jot66ngcp"]
+
+[ext_resource type="Script" uid="uid://cs1kywocn4h73" path="res://Scripts/Pages/synthesis_page.gd" id="1_2vrvr"]
+[ext_resource type="Theme" uid="uid://ctxtf6woho1hr" path="res://VSGTheme.tres" id="1_cywuu"]
+
+[node name="SynthesisPage" type="Panel" unique_id=818470318]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_cywuu")
+script = ExtResource("1_2vrvr")
+
+[node name="Strategy" type="Control" parent="." unique_id=1651911877]
+layout_mode = 1
+anchor_top = 0.1
+anchor_right = 0.8
+anchor_bottom = 0.4
+offset_left = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StrategyLabel" type="Label" parent="Strategy" unique_id=1011688745]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"VSG_SubheadingLabel"
+text = "OVERALL VISUAL STRATEGY
+How do the elements' affinities and contrasts generate the work's distinctive character? What is the dominant visual logic?"
+
+[node name="StrategyTextEdit" type="TextEdit" parent="Strategy" unique_id=28066357]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+placeholder_text = "Synthesise the visual language - how do these affinities and contrasts generate meaning, support theme, and create the work's distinctive visual identity..."
+wrap_mode = 1
+scroll_fit_content_width = true
+
+[node name="Angle" type="Control" parent="." unique_id=577523264]
+layout_mode = 1
+anchor_top = 0.5
+anchor_right = 0.8
+anchor_bottom = 0.8
+offset_left = 12.0
+offset_top = 8.0
+offset_right = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AngleLabel" type="Label" parent="Angle" unique_id=1992714276]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"VSG_SubheadingLabel"
+text = "NEWSLETTER ANGLE
+The single compelling insight for your readers - the hook worth sharing."
+
+[node name="AngleTextEdit" type="TextEdit" parent="Angle" unique_id=821651539]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+placeholder_text = "The one idea this analysis reveals that's genuinely illuminating for readers who care about visual storytelling..."
+scroll_fit_content_width = true

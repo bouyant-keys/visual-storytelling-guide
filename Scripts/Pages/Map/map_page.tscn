@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://coiltf268mo5c"]
 
+[ext_resource type="Theme" uid="uid://ctxtf6woho1hr" path="res://VSGTheme.tres" id="1_r15bh"]
+[ext_resource type="Script" uid="uid://47ma8hgr6nxm" path="res://Scripts/Pages/Map/relationship_graph.gd" id="2_dhx2u"]
+
 [node name="MapPage" type="Panel" unique_id=2010936638]
 anchors_preset = 15
 anchor_right = 1.0
@@ -7,3 +10,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_r15bh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=885212148]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RelationshipGraph" type="Panel" parent="HBoxContainer" unique_id=1393462863]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+script = ExtResource("2_dhx2u")
+
+[node name="Label" type="Label" parent="HBoxContainer/RelationshipGraph" unique_id=1026205243]
+layout_mode = 1
+offset_right = 144.0
+offset_bottom = 23.0
+theme_type_variation = &"VSG_SubheadingLabel"
+text = "COMPOSITION MAP"
+
+[node name="RelationshipMatrix" type="Panel" parent="HBoxContainer" unique_id=461867561]
+custom_minimum_size = Vector2(192, 192)
+layout_mode = 2
+
+[node name="MatrixLabel" type="Label" parent="HBoxContainer/RelationshipMatrix" unique_id=1276033251]
+layout_mode = 1
+offset_right = 183.0
+offset_bottom = 23.0
+theme_type_variation = &"VSG_SubheadingLabel"
+text = "RELATIONSHIP MATRIX"

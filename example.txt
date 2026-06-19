@@ -1,0 +1,126 @@
+{
+	"Elements": {
+		"Color": {
+			"Description": "Hue • Saturation • Temperature • Chromatic Harmony",
+			"Examples": "",
+			"Intensity": 0.0,
+			"Operation": "",
+			"Relationships": [
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		"Line": {
+			"Description": "Direction • Contour • Gesture • Implied Line",
+			"Examples": "",
+			"Intensity": 0.0,
+			"Operation": "",
+			"Relationships": [
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		"Movement": {
+			"Description": "Motion • Camera • Temporal Arc • Direction",
+			"Examples": "",
+			"Intensity": 0.0,
+			"Operation": "",
+			"Relationships": [
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		"Rhythm": {
+			"Description": "Pattern • Repetition • Pacing • Visual Beat",
+			"Examples": "",
+			"Intensity": 0.0,
+			"Operation": "",
+			"Relationships": [
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		"Shape": {
+			"Description": "Geometric • Organic • Silhouette • Figure/Ground",
+			"Examples": "",
+			"Intensity": 0.0,
+			"Operation": "",
+			"Relationships": [
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		"Space": {
+			"Description": "Positive/Negative • Depth • Scale • Proximity",
+			"Examples": "Lacking in farmlike tones. 0/10 stars.",
+			"Intensity": 2,
+			"Operation": "Cool space here",
+			"Relationships": [
+				0.0,
+				0.0,
+				0.0,
+				2,
+				0.0,
+				0.0,
+				0.0
+			]
+		},
+		"Tone": {
+			"Description": "Luminance • Shadow • Value Range • Chiaroscuro",
+			"Examples": "",
+			"Intensity": 0.0,
+			"Operation": "",
+			"Relationships": [
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			]
+		}
+	},
+	"Map": {
+
+	},
+	"Project": {
+		"Author": "",
+		"CreationDate": ""
+	},
+	"Subject": {
+		"Creator": "Dave Jave",
+		"Synopsis": "Melvin finally loses it on the barnyard.",
+		"Title": "Melvin's Farm Adveture",
+		"Type": 4,
+		"Year": "222222"
+	},
+	"Synthesis": {
+
+	}
+}
