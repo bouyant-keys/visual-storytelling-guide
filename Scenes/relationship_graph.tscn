@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://baxkdktc6tiwr"]
+
+[ext_resource type="Script" uid="uid://47ma8hgr6nxm" path="res://Scripts/Pages/Map/relationship_graph.gd" id="1_v8qex"]
+[ext_resource type="Script" uid="uid://cdd47cocnhoxf" path="res://Scripts/Pages/Map/dot_button.gd" id="2_qmuxa"]
+[ext_resource type="Texture2D" uid="uid://cmpwvd47bd5g5" path="res://Scripts/Pages/Map/save.png" id="3_cpdb6"]
+
+[sub_resource type="DPITexture" id="DPITexture_2odi8"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\"/></svg>
+"
+
+[node name="RelationshipGraph" type="Panel" unique_id=765506066]
+custom_minimum_size = Vector2(320, 320)
+size_flags_horizontal = 3
+script = ExtResource("1_v8qex")
+
+[node name="GraphLabel" type="Label" parent="." unique_id=1758960168]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 4.0
+offset_bottom = 21.0
+grow_horizontal = 2
+theme_type_variation = &"VSG_SubheadingLabel"
+text = "COMPOSITION MAP"
+horizontal_alignment = 1
+
+[node name="KeyLabel" type="RichTextLabel" parent="." unique_id=1088000408]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -21.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"VSG_SubheadingLabel"
+bbcode_enabled = true
+text = "[color=yellow][s]  [/s][/color] Affinity  [color=red][s] [/s] [s] [/s][/color] Contrast  Size=Intensity"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="LegendLabel" type="RichTextLabel" parent="." unique_id=1668629409]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -59.5
+offset_bottom = 59.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_type_variation = &"VSG_SubheadingLabel"
+bbcode_enabled = true
+text = "• Space
+• Line
+• Shape
+• Tone
+• Color
+• Movement
+• Rhythm"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Dots" type="Control" parent="." unique_id=1827947373]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpaceDot" type="TextureButton" parent="Dots" unique_id=577694937]
+self_modulate = Color(0.3019608, 0.5137255, 0.76862746, 1)
+layout_mode = 1
+offset_left = 112.0
+offset_top = 26.666664
+offset_right = 144.0
+offset_bottom = 58.666664
+pivot_offset_ratio = Vector2(0.5, 0.5)
+tooltip_text = "Space - Intensity: n, Relationships: n"
+texture_normal = SubResource("DPITexture_2odi8")
+stretch_mode = 5
+script = ExtResource("2_qmuxa")
+
+[node name="LineDot" type="TextureButton" parent="Dots" unique_id=1182119518]
+self_modulate = Color(0.7882353, 0.6627451, 0.43137255, 1)
+layout_mode = 1
+offset_left = 178.7163
+offset_top = 58.795532
+offset_right = 210.7163
+offset_bottom = 90.79553
+pivot_offset_ratio = Vector2(0.5, 0.5)
+tooltip_text = "Line - Intensity: n, Relationships: n"
+texture_normal = SubResource("DPITexture_2odi8")
+stretch_mode = 5
+script = ExtResource("2_qmuxa")
+dot_element = 1
+
+[node name="ShapeDot" type="TextureButton" parent="Dots" unique_id=931335327]
+self_modulate = Color(0.5686275, 0.45882353, 0.83137256, 1)
+layout_mode = 1
+offset_left = 195.19385
+offset_top = 130.98845
+offset_right = 227.19385
+offset_bottom = 162.98845
+pivot_offset_ratio = Vector2(0.5, 0.5)
+tooltip_text = "Shape - Intensity: n, Relationships: n"
+texture_normal = SubResource("DPITexture_2odi8")
+stretch_mode = 5
+script = ExtResource("2_qmuxa")
+dot_element = 2
+
+[node name="ToneDot" type="TextureButton" parent="Dots" unique_id=336186729]
+self_modulate = Color(0.47843137, 0.70980394, 0.7882353, 1)
+layout_mode = 1
+offset_left = 149.02475
+offset_top = 188.88268
+offset_right = 181.02475
+offset_bottom = 220.88268
+pivot_offset_ratio = Vector2(0.5, 0.5)
+tooltip_text = "Tone - Intensity: n, Relationships: n"
+texture_normal = SubResource("DPITexture_2odi8")
+stretch_mode = 5
+script = ExtResource("2_qmuxa")
+dot_element = 3
+
+[node name="ColorDot" type="TextureButton" parent="Dots" unique_id=1220274248]
+self_modulate = Color(0.76862746, 0.34117648, 0.2901961, 1)
+layout_mode = 1
+offset_left = 74.97525
+offset_top = 188.88268
+offset_right = 106.97525
+offset_bottom = 220.88268
+pivot_offset_ratio = Vector2(0.5, 0.5)
+tooltip_text = "Color - Intensity: n, Relationships: n"
+texture_normal = SubResource("DPITexture_2odi8")
+stretch_mode = 5
+script = ExtResource("2_qmuxa")
+dot_element = 4
+
+[node name="MovementDot" type="TextureButton" parent="Dots" unique_id=1209581411]
+self_modulate = Color(0.3647059, 0.627451, 0.43137255, 1)
+layout_mode = 1
+offset_left = 28.806152
+offset_top = 130.98846
+offset_right = 60.806152
+offset_bottom = 162.98846
+pivot_offset_ratio = Vector2(0.5, 0.5)
+tooltip_text = "Movement - Intensity: n, Relationships: n"
+texture_normal = SubResource("DPITexture_2odi8")
+stretch_mode = 5
+script = ExtResource("2_qmuxa")
+dot_element = 5
+
+[node name="RhythmDot" type="TextureButton" parent="Dots" unique_id=318861353]
+self_modulate = Color(0.76862746, 0.6117647, 0.26666668, 1)
+layout_mode = 1
+offset_left = 45.2837
+offset_top = 58.795547
+offset_right = 77.2837
+offset_bottom = 90.79555
+pivot_offset_ratio = Vector2(0.5, 0.5)
+tooltip_text = "Rhythm - Intensity: n, Relationships: n"
+texture_normal = SubResource("DPITexture_2odi8")
+stretch_mode = 5
+script = ExtResource("2_qmuxa")
+dot_element = 6
+
+[node name="TextureButton" type="Button" parent="." unique_id=1985111097]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_right = 1.0
+anchor_bottom = 0.1
+offset_top = 4.0
+offset_right = -4.0
+grow_horizontal = 0
+theme_type_variation = &"ToggleButton"
+icon = ExtResource("3_cpdb6")
+icon_alignment = 1

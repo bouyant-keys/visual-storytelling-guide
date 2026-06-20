@@ -5,8 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://8rj1wnwtdqa5" path="res://Scenes/elements_page.tscn" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://blr4oyyby6h30" path="res://Scripts/subject_panel.gd" id="3_344ge"]
 [ext_resource type="Script" uid="uid://b1ggsw15ycj8y" path="res://Scripts/Pages/page_manager.gd" id="3_jjvhh"]
-[ext_resource type="PackedScene" uid="uid://coiltf268mo5c" path="res://Scripts/Pages/Map/map_page.tscn" id="5_6bp64"]
+[ext_resource type="PackedScene" uid="uid://coiltf268mo5c" path="res://Scenes/map_page.tscn" id="5_6bp64"]
 [ext_resource type="PackedScene" uid="uid://ha3jot66ngcp" path="res://Scenes/synthesis_page.tscn" id="6_344ge"]
+[ext_resource type="Script" uid="uid://djm53boyyxxg3" path="res://Scripts/Pages/Map/map_page.gd" id="7_ynf5e"]
 [ext_resource type="Script" uid="uid://dlgijxso567lc" path="res://Scripts/file_dialog.gd" id="8_344ge"]
 
 [node name="Main" type="Node" unique_id=1253172053]
@@ -338,6 +339,7 @@ layout_mode = 1
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+script = ExtResource("7_ynf5e")
 
 [node name="SynthesisPage" parent="Application/PageManager" unique_id=818470318 instance=ExtResource("6_344ge")]
 unique_name_in_owner = true
@@ -347,7 +349,6 @@ layout_mode = 1
 [node name="FileDialog" type="FileDialog" parent="." unique_id=1480375612]
 unique_name_in_owner = true
 oversampling_override = 1.0
-position = Vector2i(0, 36)
 access = 2
 filters = PackedStringArray("*.txt", "*.json", "*.JSON")
 use_native_dialog = true

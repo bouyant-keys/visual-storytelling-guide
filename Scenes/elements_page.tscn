@@ -9,6 +9,7 @@
 [sub_resource type="DPITexture" id="DPITexture_vtvwg"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".75\"/></svg>
 "
+base_scale = 2.0
 
 [node name="ElementsPage" type="Panel" unique_id=1081089266 node_paths=PackedStringArray("element_buttons", "intensity_buttons", "relationship_buttons")]
 custom_minimum_size = Vector2(384, 256)
@@ -173,6 +174,12 @@ intensity_value = 4
 layout_mode = 2
 text = "5"
 intensity_value = 5
+
+[node name="IntensityStrength" type="Label" parent="HSplitContainer/ElementsContent/Intensity/IntensityScale" unique_id=803997428]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"VSG_SubheadingLabel"
+text = "Strong"
 
 [node name="Operation" type="Control" parent="HSplitContainer/ElementsContent" unique_id=669391526]
 layout_mode = 1

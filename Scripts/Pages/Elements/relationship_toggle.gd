@@ -9,7 +9,7 @@ enum ToggleState { NEUTRAL, AFFINITY, CONTRAST }
 signal state_changed(element:ConfigManager.VisualElements, state:ToggleState)
 
 func _on_press() -> void:
-	button_state = clampi(button_state + 1, 0, 2) as ToggleState
+	button_state = posmod(button_state + 1, 3) as ToggleState
 	state_changed.emit(button_element, button_state)
 	
 	match(button_state):

@@ -17,6 +17,9 @@ const E_RELATIONSHIPS_KEY := "Relationships"
 const E_OPERATION_KEY := "Operation"
 const E_EXAMPLES_KEY := "Examples"
 
+const MAP_KEY := "Map"
+const M_RELATIONSHIPS_KEY := "Relationships"
+
 const SYNTHESIS_KEY = "Synthesis"
 const SY_STRATEGY_KEY = "Strategy"
 const SY_ANGLE_KEY = "Angle"
@@ -108,6 +111,21 @@ func save_file(path:String) ->void:
 		print("File saved to " + (path) + " successfully!")
 	else:
 		print("Error: ", FileAccess.get_open_error())
+
+func save_graph(path:String) ->void:
+	# Get Image from map
+	var image : Image
+	
+	var error:Error
+	if path.contains(".png"):
+		error = image.save_png(path)
+	else:
+		error = image.save_jpg(path)
+	
+	if error:
+		print("Error: ", error)
+	else:
+		print("Graph saved to " + (path) + " successfully!")
 #endregion
 
 #region Getters
@@ -121,7 +139,31 @@ func get_element_data(element:ConfigManager.VisualElements) ->Dictionary:
 	var e_name : String = ConfigManager.get_element_name(element)
 	print('\n\n', element, e_name, data[ELEMENTS_KEY][e_name])
 	return data[ELEMENTS_KEY][e_name]
+
+func get_element_intensities() ->Array[int]:
+	var intensities : Array[int]
+	for key : String in E_ELEMENT_KEYS:
+		intensities.append(int(data[ELEMENTS_KEY][key][E_INTENSITY_KEY]))
+	return intensities
+
+func get_relationship(x:int, y:int) ->int:
+	return data[MAP_KEY][M_RELATIONSHIPS_KEY][x][y]
+
+func get_element_relationships(e:ConfigManager.VisualElements) ->Array[int]:
+	var e_relationships : Array[int] 
+	e_relationships.assign(data[MAP_KEY][M_RELATIONSHIPS_KEY][int(e)])
+	return e_relationships
+
+func get_all_relationships() ->Array:
+	return data[MAP_KEY][M_RELATIONSHIPS_KEY]
 #endregion
 
+#region Setters
 func set_element_data(element:ConfigManager.VisualElements, e_data:Dictionary) ->void:
 	data[ELEMENTS_KEY][ConfigManager.get_element_name(element)] = e_data
+
+func set_relationship_data(x:int, y:int, value:int, undirected:bool=true) ->void:
+	data[MAP_KEY][M_RELATIONSHIPS_KEY][x][y] = value
+	if undirected:
+		data[MAP_KEY][M_RELATIONSHIPS_KEY][y][x] = value
+#endregion

@@ -1,6 +1,9 @@
 [gd_resource type="Theme" format=3 uid="uid://ctxtf6woho1hr"]
 
 [ext_resource type="FontFile" uid="uid://4jbc2jmdgpom" path="res://Fonts/JetBrains_Mono/static/JetBrainsMono-Light.ttf" id="1_1w2cu"]
+[ext_resource type="FontFile" uid="uid://dqysh2i8jy2la" path="res://Fonts/JetBrains_Mono/static/JetBrainsMono-SemiBold.ttf" id="2_6ohy7"]
+[ext_resource type="FontFile" uid="uid://cltcepjf2l6u8" path="res://Fonts/JetBrains_Mono/static/JetBrainsMono-SemiBoldItalic.ttf" id="3_0yaym"]
+[ext_resource type="FontFile" uid="uid://cl7c4ms8qlbqm" path="res://Fonts/JetBrains_Mono/static/JetBrainsMono-LightItalic.ttf" id="4_ri0dv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybxmg"]
 bg_color = Color(0.024613967, 0.028893095, 0.046728842, 1)
@@ -149,6 +152,16 @@ Panel/styles/panel = SubResource("StyleBoxFlat_jjgbg")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_jjgbg")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_ri0dv")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_vi02w")
+RichTextLabel/font_sizes/bold_font_size = 12
+RichTextLabel/font_sizes/bold_italics_font_size = 12
+RichTextLabel/font_sizes/italics_font_size = 12
+RichTextLabel/font_sizes/mono_font_size = 12
+RichTextLabel/font_sizes/normal_font_size = 12
+RichTextLabel/fonts/bold_font = ExtResource("2_6ohy7")
+RichTextLabel/fonts/bold_italics_font = ExtResource("3_0yaym")
+RichTextLabel/fonts/italics_font = ExtResource("4_ri0dv")
+RichTextLabel/fonts/mono_font = ExtResource("1_1w2cu")
+RichTextLabel/fonts/normal_font = ExtResource("1_1w2cu")
 TabBar/font_sizes/font_size = 12
 TabBar/fonts/font = ExtResource("1_1w2cu")
 TabBar/styles/tab_disabled = SubResource("StyleBoxFlat_4yyan")

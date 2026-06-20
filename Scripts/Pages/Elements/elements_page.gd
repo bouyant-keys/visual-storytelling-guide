@@ -12,6 +12,7 @@ var current_element := ConfigManager.VisualElements.SPACE
 @onready var element_texture: TextureRect = %ElementTexture
 @onready var operation_text_edit: TextEdit = %OperationTextEdit
 @onready var examples_text_edit: TextEdit = %ExamplesTextEdit
+@onready var intensity_strength: Label = %IntensityStrength
 
 signal element_changed(element:ConfigManager.VisualElements)
 
@@ -37,11 +38,15 @@ func _ready() -> void:
 	
 	for button : RelationshipToggle in relationship_buttons:
 		button.state_changed.connect(relationship_changed)
-	
 
 func on_file_loaded() ->void:
 	page_data = DataManager.get_data_by_page_key(page_key)
 	element_data = page_data[DataManager.get_visual_element_as_key(current_element)]
+	
+	for button in element_buttons:
+		var button_element_data := page_data[DataManager.get_visual_element_as_key(button.element)] as Dictionary
+		button.update_intensity(button_element_data[DataManager.E_INTENSITY_KEY])
+	
 	update_display()
 
 func on_element_selected(element:ConfigManager.VisualElements) ->void:
@@ -69,7 +74,7 @@ func update_display() ->void:
 	# Set custom values from loaded data:
 	set_intensity(element_data[DataManager.E_INTENSITY_KEY] as int)
 	operation_text_edit.text = element_data[DataManager.E_OPERATION_KEY] as String
-	set_relationships(element_data[DataManager.E_RELATIONSHIPS_KEY] as Array)
+	set_relationships(DataManager.get_element_relationships(current_element))
 	examples_text_edit.text = element_data[DataManager.E_EXAMPLES_KEY] as String
 
 #region Signals
@@ -82,38 +87,17 @@ func on_operation_changed() ->void:
 	element_data[DataManager.E_OPERATION_KEY] = op_text
 
 func relationship_changed(to_element:ConfigManager.VisualElements, state:RelationshipToggle.ToggleState) ->void:
-	element_data[DataManager.E_RELATIONSHIPS_KEY][to_element] = int(state)
+	DataManager.set_relationship_data(int(current_element), int(to_element), int(state))
 
 func on_examples_changed() ->void:
 	var ex_text = examples_text_edit.text
 	element_data[DataManager.E_EXAMPLES_KEY] = ex_text
 #endregion
 
-#region Getters
-func get_intensity() ->int:
-	var intensity = 0
-	
-	for i : int in intensity_buttons.size():
-		var button := intensity_buttons[i]
-		intensity += 1 if button.button_pressed else 0
-	
-	return intensity
-
-func get_relationships() ->Array[int]:
-	var rel_values = [0, 0, 0, 0, 0, 0, 0]
-	
-	for i : int in relationship_buttons.size():
-		var button := relationship_buttons[i]
-		if button.button_element == current_element:
-			rel_values[i] = 0
-			continue
-		rel_values[i] = button.button_state
-	
-	return rel_values
-#endregion
-
 #region Setters
 func set_intensity(value:int) ->void:
+	intensity_strength.text = ConfigManager.INTENSITY_VALUES[value]
+	
 	var temp := value
 	for i : int in intensity_buttons.size():
 		var button := intensity_buttons[i]
@@ -130,5 +114,9 @@ func set_intensity(value:int) ->void:
 func set_relationships(rel_values:Array) ->void:
 	for i : int in relationship_buttons.size():
 		var button := relationship_buttons[i]
-		button.set_state(int(rel_values[i]) as RelationshipToggle.ToggleState)
+		if button.button_element == current_element:
+			button.hide()
+		else:
+			button.set_state(int(rel_values[i]) as RelationshipToggle.ToggleState)
+			button.show()
 #endregion

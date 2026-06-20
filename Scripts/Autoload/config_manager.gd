@@ -14,6 +14,8 @@ const ELEMENT_RHYTHM_COLOR := Color("c49c44")
 const RELATIONSHIP_AFFINITY_COLOR := Color("ae8a3e")
 const RELATIONSHIP_CONTRAST_COLOR := Color("be5448")
 
+const INTENSITY_VALUES : Array[String] = ["None", "Minimal", "Subtle", "Moderate", "Strong", "Dominant"]
+
 var current_element : VisualElements
 
 func get_current_element_color() ->Color:
@@ -36,6 +38,13 @@ func get_element_color(element:VisualElements) ->Color:
 			e_color = ELEMENT_RHYTHM_COLOR
 	
 	return e_color
+func get_element_colorcode(element:VisualElements) ->String:
+	return get_element_color(element).to_html(false)
+func get_element_colors() ->Array[Color]:
+	var colors : Array[Color] = [ELEMENT_SPACE_COLOR, ELEMENT_LINE_COLOR, 
+		ELEMENT_SHAPE_COLOR, ELEMENT_TONE_COLOR, ELEMENT_COLOR_COLOR,
+		ELEMENT_MOVEMENT_COLOR, ELEMENT_RHYTHM_COLOR]
+	return colors
 func get_element_name(element:VisualElements) ->String:
 	var e_name := "Space"
 	
