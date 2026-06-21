@@ -3,7 +3,7 @@
 		"Color": {
 			"Description": "Hue • Saturation • Temperature • Chromatic Harmony",
 			"Examples": "",
-			"Intensity": 1,
+			"Intensity": 1.0,
 			"Operation": "",
 			"Relationships": [
 				0.0,
@@ -18,7 +18,7 @@
 		"Line": {
 			"Description": "Direction • Contour • Gesture • Implied Line",
 			"Examples": "",
-			"Intensity": 2,
+			"Intensity": 2.0,
 			"Operation": "",
 			"Relationships": [
 				0.0,
@@ -33,7 +33,7 @@
 		"Movement": {
 			"Description": "Motion • Camera • Temporal Arc • Direction",
 			"Examples": "",
-			"Intensity": 4,
+			"Intensity": 4.0,
 			"Operation": "",
 			"Relationships": [
 				0.0,
@@ -48,7 +48,7 @@
 		"Rhythm": {
 			"Description": "Pattern • Repetition • Pacing • Visual Beat",
 			"Examples": "",
-			"Intensity": 2,
+			"Intensity": 2.0,
 			"Operation": "",
 			"Relationships": [
 				0.0,
@@ -63,7 +63,7 @@
 		"Shape": {
 			"Description": "Geometric • Organic • Silhouette • Figure/Ground",
 			"Examples": "",
-			"Intensity": 3,
+			"Intensity": 1,
 			"Operation": "",
 			"Relationships": [
 				0.0,
@@ -78,7 +78,7 @@
 		"Space": {
 			"Description": "Positive/Negative • Depth • Scale • Proximity",
 			"Examples": "",
-			"Intensity": 5,
+			"Intensity": 5.0,
 			"Operation": "",
 			"Relationships": [
 				0.0,
@@ -93,7 +93,7 @@
 		"Tone": {
 			"Description": "Luminance • Shadow • Value Range • Chiaroscuro",
 			"Examples": "",
-			"Intensity": 5,
+			"Intensity": 5.0,
 			"Operation": "",
 			"Relationships": [
 				0.0,
@@ -110,63 +110,63 @@
 		"Relationships": [
 			[
 				0.0,
-				1,
-				2,
+				0,
+				0,
 				0.0,
-				1,
-				0.0,
-				0.0
+				0,
+				0,
+				0
 			],
 			[
-				1,
+				0,
 				0.0,
 				0.0,
 				0.0,
-				0.0,
-				0.0,
-				0.0
-			],
-			[
-				2,
-				0.0,
-				0.0,
-				1,
 				0.0,
 				0.0,
 				0.0
 			],
 			[
+				0,
 				0.0,
 				0.0,
-				1,
+				1.0,
 				0.0,
-				0.0,
-				0.0,
-				2
-			],
-			[
-				1,
-				0.0,
-				0.0,
-				0.0,
-				0.0,
-				1,
-				0.0
-			],
-			[
-				0.0,
-				0.0,
-				0.0,
-				0.0,
-				1,
 				0.0,
 				0.0
 			],
 			[
 				0.0,
 				0.0,
+				1.0,
 				0.0,
-				2,
+				0.0,
+				0.0,
+				2.0
+			],
+			[
+				0,
+				0.0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0
+			],
+			[
+				0,
+				0.0,
+				0.0,
+				0.0,
+				1.0,
+				0.0,
+				0.0
+			],
+			[
+				0,
+				0.0,
+				0.0,
+				2.0,
 				0.0,
 				0.0,
 				0.0
@@ -181,11 +181,11 @@
 		"Creator": "Orson Welles",
 		"Synopsis": "Game about fakes (fake movies).",
 		"Title": "Fake Movie",
-		"Type": 4,
+		"Type": 4.0,
 		"Year": "01"
 	},
 	"Synthesis": {
-		"Angle": "",
-		"Strategy": ""
+		"Angle": "fwfwfwf",
+		"Strategy": "gegegeg"
 	}
 }

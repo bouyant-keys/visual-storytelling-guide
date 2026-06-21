@@ -2,6 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://ctxtf6woho1hr" path="res://VSGTheme.tres" id="1_r15bh"]
 [ext_resource type="PackedScene" uid="uid://baxkdktc6tiwr" path="res://Scenes/relationship_graph.tscn" id="2_2odi8"]
+[ext_resource type="Script" uid="uid://djm53boyyxxg3" path="res://Scripts/Pages/Map/map_page.gd" id="2_111m8"]
+[ext_resource type="Texture2D" uid="uid://cmpwvd47bd5g5" path="res://Textures/save.png" id="3_cl8f6"]
+[ext_resource type="Texture2D" uid="uid://c4ff5wrl4deld" path="res://Textures/icon_main.png" id="5_bounr"]
 
 [node name="MapPage" type="Panel" unique_id=2010936638]
 anchors_preset = 15
@@ -11,19 +14,37 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_r15bh")
+script = ExtResource("2_111m8")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=885212148]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 516.0
+offset_bottom = 320.0
+mouse_filter = 2
 
 [node name="RelationshipGraph" parent="HBoxContainer" unique_id=765506066 instance=ExtResource("2_2odi8")]
 layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="HBoxContainer/RelationshipGraph" unique_id=1296585480]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_right = 1.0
+anchor_bottom = 0.1
+offset_top = 4.0
+offset_right = -4.0
+grow_horizontal = 0
+mouse_filter = 1
+theme_type_variation = &"ToggleButton"
+icon = ExtResource("3_cl8f6")
+icon_alignment = 1
 
 [node name="RelationshipMatrix" type="Panel" parent="HBoxContainer" unique_id=461867561]
 custom_minimum_size = Vector2(192, 192)
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="MatrixLabel" type="Label" parent="HBoxContainer/RelationshipMatrix" unique_id=1276033251]
 layout_mode = 1
@@ -32,11 +53,125 @@ offset_bottom = 23.0
 theme_type_variation = &"VSG_SubheadingLabel"
 text = "RELATIONSHIP MATRIX"
 
-[node name="SubViewport" type="SubViewport" parent="." unique_id=992962770]
+[node name="ExportPanel" type="PanelContainer" parent="." unique_id=1894518879]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -257.0
+offset_top = -257.0
+offset_right = 257.0
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="RelationshipGraph" parent="SubViewport" unique_id=806528521 instance=ExtResource("2_2odi8")]
+[node name="VBoxContainer" type="VBoxContainer" parent="ExportPanel" unique_id=769956519]
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="ExportPanel/VBoxContainer" unique_id=1819590824]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="CaptureViewport" type="SubViewport" parent="ExportPanel/VBoxContainer/SubViewportContainer" unique_id=992962770]
+unique_name_in_owner = true
+disable_3d = true
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="GraphParent" type="Control" parent="ExportPanel/VBoxContainer/SubViewportContainer/CaptureViewport" unique_id=1334653485]
+unique_name_in_owner = true
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="RelationshipGraph" parent="ExportPanel/VBoxContainer/SubViewportContainer/CaptureViewport/GraphParent" unique_id=806528521 instance=ExtResource("2_2odi8")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsPanel" type="PanelContainer" parent="ExportPanel/VBoxContainer" unique_id=918647857]
+layout_mode = 2
+size_flags_vertical = 8
+mouse_filter = 2
+theme_type_variation = &"VSG_HeaderPanelContainer"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ExportPanel/VBoxContainer/SettingsPanel" unique_id=1568306145]
+layout_mode = 2
+
+[node name="ResolutionLabel" type="Label" parent="ExportPanel/VBoxContainer/SettingsPanel/HBoxContainer" unique_id=1589402912]
+layout_mode = 2
+text = "Image Resolution: "
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ResetButton" type="Button" parent="ExportPanel/VBoxContainer/SettingsPanel/HBoxContainer" unique_id=224922763]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+theme_type_variation = &"ToggleButton"
+text = "    "
+icon = ExtResource("5_bounr")
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="XResEdit" type="SpinBox" parent="ExportPanel/VBoxContainer/SettingsPanel/HBoxContainer" unique_id=2127363274]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+min_value = 64.0
+max_value = 1080.0
+value = 512.0
+rounded = true
+suffix = "px"
+metadata/_edit_use_anchors_ = true
+
+[node name="YResEdit" type="SpinBox" parent="ExportPanel/VBoxContainer/SettingsPanel/HBoxContainer" unique_id=1718581873]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+min_value = 64.0
+max_value = 1080.0
+value = 512.0
+rounded = true
+suffix = "px"
+metadata/_edit_use_anchors_ = true
+
+[node name="ExportButton" type="Button" parent="ExportPanel/VBoxContainer/SettingsPanel/HBoxContainer" unique_id=516374367]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 1
+theme_type_variation = &"ToggleButton"
+text = "Export"
+metadata/_edit_use_anchors_ = true
+
+[node name="CancelButton" type="Button" parent="ExportPanel/VBoxContainer/SettingsPanel/HBoxContainer" unique_id=1184690628]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 1
+theme_type_variation = &"ToggleButton"
+text = "Cancel"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="HBoxContainer/RelationshipGraph/SaveButton" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="ExportPanel/VBoxContainer/SettingsPanel/HBoxContainer/ResetButton" to="." method="_on_resolution_reset"]
+[connection signal="value_changed" from="ExportPanel/VBoxContainer/SettingsPanel/HBoxContainer/XResEdit" to="." method="_on_resolution_changed"]
+[connection signal="value_changed" from="ExportPanel/VBoxContainer/SettingsPanel/HBoxContainer/YResEdit" to="." method="_on_resolution_changed"]
+[connection signal="pressed" from="ExportPanel/VBoxContainer/SettingsPanel/HBoxContainer/ExportButton" to="." method="_on_export_pressed"]
+[connection signal="pressed" from="ExportPanel/VBoxContainer/SettingsPanel/HBoxContainer/CancelButton" to="." method="_on_cancel_pressed"]

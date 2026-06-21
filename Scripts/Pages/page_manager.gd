@@ -5,6 +5,7 @@ var current_page := -1
 @onready var elements_page: Panel = %ElementsPage
 @onready var map_page: Panel = %MapPage
 @onready var synthesis_page: Panel = %SynthesisPage
+@onready var config_page: Panel = %ConfigPage
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _on_tab_changed(tab: int) -> void:
 	elements_page.hide()
 	map_page.hide()
 	synthesis_page.hide()
+	config_page.hide()
 	
 	match(tab):
 		0:
@@ -27,3 +29,5 @@ func _on_tab_changed(tab: int) -> void:
 			map_page.show()
 		2:
 			synthesis_page.show()
+		3:
+			config_page.show()

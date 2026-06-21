@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://82l2q7swk3d1"]
+
+[ext_resource type="Script" uid="uid://dwkuu0dcygl1i" path="res://Scripts/Pages/Config/coloredit.gd" id="1_5yxfb"]
+[ext_resource type="Theme" uid="uid://ctxtf6woho1hr" path="res://VSGTheme.tres" id="1_idt6r"]
+
+[node name="ColorEdit" type="PanelContainer" unique_id=2064323018]
+custom_minimum_size = Vector2(0, 32)
+theme = ExtResource("1_idt6r")
+theme_type_variation = &"VSG_HeaderPanelContainer"
+script = ExtResource("1_5yxfb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1615946281]
+layout_mode = 2
+
+[node name="PropertyLabel" type="Label" parent="HBoxContainer" unique_id=1325562541]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = " Property "
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1137122986]
+layout_mode = 2
+
+[node name="ColorPicker" type="ColorPickerButton" parent="HBoxContainer" unique_id=94077232]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[connection signal="color_changed" from="HBoxContainer/ColorPicker" to="." method="_on_color_changed"]

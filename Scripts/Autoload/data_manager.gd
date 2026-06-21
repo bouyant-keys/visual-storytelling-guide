@@ -2,6 +2,16 @@ extends Node
 
 const DEFAULT_DATA := preload("res://Scripts/DefaultData.json")
 
+const PROJECT_KEY := "Project"
+const P_AUTHOR_KEY := "Author"
+const P_CREATION_KEY := "CreationDate"
+const P_PALETTEINDEX := "PaletteIndex"
+const P_CUSTOMCOLORS_KEY := "CustomColors"
+const COL_PALETTE_KEY := "Palette"
+const COL_APP_KEY := "AppColors"
+const COL_ELEMENT_KEY := "ElementColors:"
+const COL_RELATIONSHIP_KEY := "RelationshipColors"
+
 const SUBJECT_KEY := "Subject"
 const S_TITLE_KEY := "Title"
 const S_TYPE_KEY := "Type"
@@ -26,6 +36,7 @@ const SY_ANGLE_KEY = "Angle"
 
 var data : Dictionary
 var pages : Array[Page]
+var graph_page : Page
 var quicksave_path := ""
 
 # Opens the quicksave/export popup if no quicksave path exists
@@ -114,7 +125,11 @@ func save_file(path:String) ->void:
 
 func save_graph(path:String) ->void:
 	# Get Image from map
-	var image : Image
+	var graph_data := graph_page.get_page_data()
+	var image := graph_data[graph_page.get_page_key()] as Image
+	
+	if !image:
+		printerr("No graph image to export!")
 	
 	var error:Error
 	if path.contains(".png"):
@@ -156,6 +171,14 @@ func get_element_relationships(e:ConfigManager.VisualElements) ->Array[int]:
 
 func get_all_relationships() ->Array:
 	return data[MAP_KEY][M_RELATIONSHIPS_KEY]
+
+func get_color_palette() ->int:
+	return int(data[PROJECT_KEY][P_PALETTEINDEX])
+
+## Returns array of all color palettes.
+func get_color_data() ->Array:
+	return data[PROJECT_KEY][P_CUSTOMCOLORS_KEY]
+
 #endregion
 
 #region Setters
@@ -166,4 +189,7 @@ func set_relationship_data(x:int, y:int, value:int, undirected:bool=true) ->void
 	data[MAP_KEY][M_RELATIONSHIPS_KEY][x][y] = value
 	if undirected:
 		data[MAP_KEY][M_RELATIONSHIPS_KEY][y][x] = value
+
+func add_color_data(palette:Dictionary) ->void:
+	data[PROJECT_KEY][P_CUSTOMCOLORS_KEY].append(palette)
 #endregion

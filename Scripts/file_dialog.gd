@@ -1,4 +1,4 @@
-extends FileDialog
+class_name FilePopup extends FileDialog
 
 const file_export_filters : PackedStringArray = ["*.txt", "*.json", "*.JSON"]
 const graph_export_filters : PackedStringArray = ["*.png", "*.jpg"]

@@ -1,4 +1,4 @@
-extends Panel
+extends Graph
 
 const KEY_FORMAT := "[color=#%s][s]  [/s][/color] Affinity  [color=#%s][s] [/s] [s] [/s][/color] Contrast  Size=Intensity"
 const LEGEND_FORMAT := "[color=#%s]•[/color] %s\n"
@@ -25,42 +25,49 @@ signal dot_selected(element:ConfigManager.VisualElements)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	DataManager.file_loaded.connect(queue_redraw)
+	ConfigManager.palette_changed.connect(_on_palette_changed)
 	legend_label.clear()
 	
 	for dot : DotButton in dot_parent.get_children():
 		dot.dot_selected.connect(_on_dot_selected)
 		dot.dot_hovered.connect(_on_dot_hovered)
+		element_dots.append(dot)
+	
+	print("Ready Completed: ", self.get_instance_id())
+
+func _on_palette_changed() ->void:
+	legend_label.clear()
+	
+	for dot : DotButton in dot_parent.get_children():
 		var dot_label := LEGEND_FORMAT % [
 			ConfigManager.get_element_colorcode(dot.dot_element),
 			DataManager.E_ELEMENT_KEYS[dot.dot_element]]
-		print("Dot Legend: ", dot_label)
 		legend_label.append_text(dot_label)
-		element_dots.append(dot)
 	
 	key_label.text = KEY_FORMAT % [
-		ConfigManager.RELATIONSHIP_AFFINITY_COLOR.to_html(false),
-		ConfigManager.RELATIONSHIP_CONTRAST_COLOR.to_html(false)]
+		ConfigManager.relationship_colors[0].to_html(false),
+		ConfigManager.relationship_colors[1].to_html(false)]
 	
+	queue_redraw()
 
 func _on_dot_hovered(hovering:bool) ->void:
 	if !hovering:
 		highlighted_dot = -1
 		queue_redraw()
 		return
-	
 	for i in element_dots.size():
 		var dot : DotButton = element_dots[i]
 		if dot.hovered:
 			highlighted_dot = i
 			break
-	
 	queue_redraw()
 
 func _on_dot_selected(element:ConfigManager.VisualElements) ->void:
 	dot_selected.emit(element)
 
 func _draw() ->void:
-	print("Drawing")
+	print("Drawing: ", get_instance_id())
 	var e_colors := ConfigManager.get_element_colors()
 	var e_intensities := DataManager.get_element_intensities()
 	
@@ -90,18 +97,15 @@ func _draw() ->void:
 
 func draw_relationships(e_pos : Array[Vector2]) ->void:
 	var e_relationships : Array = DataManager.get_all_relationships()
-	var affinity_color := ConfigManager.RELATIONSHIP_AFFINITY_COLOR
-	var conflict_color := ConfigManager.RELATIONSHIP_CONTRAST_COLOR
-	
 	for i : int in e_relationships.size():
 		for j : int in e_relationships[i].size():
 			match(int(e_relationships[i][j])):
 				0:
 					continue
 				1: # Affinity
-					draw_line(e_pos[i], e_pos[j], affinity_color, 2.0)
+					draw_line(e_pos[i], e_pos[j], ConfigManager.relationship_colors[0], 2.0)
 				2: # Contrast
-					draw_dashed_line(e_pos[i], e_pos[j], conflict_color, 2.0)
+					draw_dashed_line(e_pos[i], e_pos[j], ConfigManager.relationship_colors[1], 2.0)
 
 func highlight_relationships(e_pos : Array[Vector2]) ->void:
 	var e_relationships : Array = DataManager.get_all_relationships()
@@ -118,13 +122,11 @@ func highlight_relationships(e_pos : Array[Vector2]) ->void:
 				2: # Contrast
 					draw_dashed_line(e_pos[i], e_pos[j], graph_colors[0], 2.0)
 	
-	var affinity_color = ConfigManager.RELATIONSHIP_AFFINITY_COLOR
-	var conflict_color = ConfigManager.RELATIONSHIP_CONTRAST_COLOR
 	for i : int in e_relationships[highlighted_dot].size():
 		match(int(e_relationships[highlighted_dot][i])):
 			0:
 				continue
 			1: # Affinity
-				draw_line(e_pos[highlighted_dot], e_pos[i], affinity_color, 2.0)
+				draw_line(e_pos[highlighted_dot], e_pos[i], ConfigManager.relationship_colors[0], 2.0)
 			2: # Contrast
-				draw_dashed_line(e_pos[highlighted_dot], e_pos[i], conflict_color, 2.0)
+				draw_dashed_line(e_pos[highlighted_dot], e_pos[i], ConfigManager.relationship_colors[1], 2.0)
