@@ -17,6 +17,9 @@ func _ready() -> void:
 	creator_edit.text_changed.connect(on_creator_changed)
 	year_edit.text_changed.connect(on_year_changed)
 	synopsis_edit.text_changed.connect(on_synopsis_changed)
+	
+	var dropdown_popup : PopupMenu = type_dropdown.get_popup()
+	dropdown_popup.transparent_bg = true
 
 func on_file_loaded() ->void:
 	page_data = DataManager.get_data_by_page_key(page_key)
@@ -33,6 +36,7 @@ func on_title_changed(text:String) ->void:
 
 func on_type_selected(value:int) ->void:
 	page_data[DataManager.S_TYPE_KEY] = value
+	print(type_dropdown.get_children(true))
 
 func on_creator_changed(text:String) ->void:
 	page_data[DataManager.S_CREATOR_KEY] = text

@@ -38,19 +38,24 @@ var data : Dictionary
 var pages : Array[Page]
 var graph_page : Page
 var quicksave_path := ""
+## Quits the application after saving is completed
+var queue_quit := false
 
 # Opens the quicksave/export popup if no quicksave path exists
-signal open_file_dialog
+signal save_file_dialog
+signal load_file_dialog
 signal file_loaded
 signal file_saved
+signal unsaved_changes
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_tree().auto_accept_quit = false
+	
 	var json = JSON.new()
 	var error = json.parse(JSON.stringify(DEFAULT_DATA.data))
 	if error == OK:
 		print("Read in default data.")
-		print(json.data)
 		data = json.data
 		
 		# Deferred in case of mishaps
@@ -61,11 +66,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Quicksave"):
 		print("Quicksaving document")
 		if quicksave_path.is_empty():
-			open_file_dialog.emit()
+			save_file_dialog.emit()
 		else:
 			save_file(quicksave_path)
 	elif event.is_action_pressed("PrintData"):
 		print("Printing data: \n", data)
+
+# Source: https://forum.godotengine.org/t/best-ways-to-save-on-quit/40825/3
+func _notification(notif: int) -> void:
+	if notif == NOTIFICATION_WM_CLOSE_REQUEST:
+		print("Quitting")
+		queue_quit = true
+		if quicksave_path.is_empty():
+			print("Here")
+			save_file_dialog.emit()
+		else:
+			print("Over Here")
+			save_file(quicksave_path)
 
 #region Save & Load
 func load_file(path:String) ->void:
@@ -111,6 +128,12 @@ func save_file(path:String) ->void:
 	for page : Page in pages:
 		data[page.get_page_key()] = page.get_page_data()
 	
+	# Save Color info
+	# Restricting to only 1 palette -- maybe implement more in future.
+	var palette_data := ConfigManager.get_color_palette_data()
+	print(palette_data)
+	data[PROJECT_KEY][P_CUSTOMCOLORS_KEY][0] = palette_data
+	
 	# Convert data into file & save to path
 	var file = FileAccess.open(path, FileAccess.WRITE)
 	if file:
@@ -122,6 +145,9 @@ func save_file(path:String) ->void:
 		print("File saved to " + (path) + " successfully!")
 	else:
 		print("Error: ", FileAccess.get_open_error())
+	
+	if queue_quit:
+		get_tree().quit()
 
 func save_graph(path:String) ->void:
 	# Get Image from map
@@ -141,6 +167,11 @@ func save_graph(path:String) ->void:
 		print("Error: ", error)
 	else:
 		print("Graph saved to " + (path) + " successfully!")
+
+func file_dialog_canceled() ->void:
+	if queue_quit:
+		get_tree().quit()
+
 #endregion
 
 #region Getters

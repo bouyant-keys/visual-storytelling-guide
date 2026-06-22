@@ -1,4 +1,4 @@
-class_name Page extends Panel
+class_name Page extends Control
 
 var page_key : String
 var page_data : Dictionary

@@ -18,6 +18,8 @@ func update_palette_options() ->void:
 
 func _on_palette_item_selected(index:int) ->void:
 	ConfigManager.set_palette(index)
+	DataManager.unsaved_changes.emit()
 
 func on_new_palette_pressed() ->void:
 	ConfigManager.create_new_palette(new_palette_line_edit.text)
+	DataManager.unsaved_changes.emit()

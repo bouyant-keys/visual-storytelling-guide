@@ -2,12 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://ctxtf6woho1hr" path="res://VSGTheme.tres" id="1_qmuxa"]
 [ext_resource type="Script" uid="uid://47ma8hgr6nxm" path="res://Scripts/Pages/Map/relationship_graph.gd" id="1_v8qex"]
-[ext_resource type="Script" uid="uid://cdd47cocnhoxf" path="res://Scripts/Pages/Map/dot_button.gd" id="2_qmuxa"]
-
-[sub_resource type="DPITexture" id="DPITexture_2odi8"]
-_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\"/></svg>
-"
-base_scale = 2.0
+[ext_resource type="PackedScene" uid="uid://dvm53h584vjug" path="res://Scenes/relationship_dot.tscn" id="3_v8qex"]
 
 [node name="RelationshipGraph" type="Panel" unique_id=765506066]
 custom_minimum_size = Vector2(320, 320)
@@ -82,106 +77,29 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="SpaceDot" type="TextureButton" parent="Dots" unique_id=577694937]
-self_modulate = Color(0.3019608, 0.5137255, 0.76862746, 1)
-layout_mode = 1
-offset_left = 112.0
-offset_top = 26.666664
-offset_right = 144.0
-offset_bottom = 58.666664
-pivot_offset_ratio = Vector2(0.5, 0.5)
-tooltip_text = "Space - Intensity: n, Relationships: n"
-mouse_filter = 1
-texture_normal = SubResource("DPITexture_2odi8")
-stretch_mode = 5
-script = ExtResource("2_qmuxa")
+[node name="SpaceDot" parent="Dots" unique_id=1858458054 instance=ExtResource("3_v8qex")]
+layout_mode = 0
 
-[node name="LineDot" type="TextureButton" parent="Dots" unique_id=1182119518]
-self_modulate = Color(0.7882353, 0.6627451, 0.43137255, 1)
-layout_mode = 1
-offset_left = 178.7163
-offset_top = 58.795532
-offset_right = 210.7163
-offset_bottom = 90.79553
-pivot_offset_ratio = Vector2(0.5, 0.5)
-tooltip_text = "Line - Intensity: n, Relationships: n"
-mouse_filter = 1
-texture_normal = SubResource("DPITexture_2odi8")
-stretch_mode = 5
-script = ExtResource("2_qmuxa")
+[node name="LineDot" parent="Dots" unique_id=859831916 instance=ExtResource("3_v8qex")]
+layout_mode = 0
 dot_element = 1
 
-[node name="ShapeDot" type="TextureButton" parent="Dots" unique_id=931335327]
-self_modulate = Color(0.5686275, 0.45882353, 0.83137256, 1)
-layout_mode = 1
-offset_left = 195.19385
-offset_top = 130.98845
-offset_right = 227.19385
-offset_bottom = 162.98845
-pivot_offset_ratio = Vector2(0.5, 0.5)
-tooltip_text = "Shape - Intensity: n, Relationships: n"
-mouse_filter = 1
-texture_normal = SubResource("DPITexture_2odi8")
-stretch_mode = 5
-script = ExtResource("2_qmuxa")
+[node name="ShapeDot" parent="Dots" unique_id=182169335 instance=ExtResource("3_v8qex")]
+layout_mode = 0
 dot_element = 2
 
-[node name="ToneDot" type="TextureButton" parent="Dots" unique_id=336186729]
-self_modulate = Color(0.47843137, 0.70980394, 0.7882353, 1)
-layout_mode = 1
-offset_left = 149.02475
-offset_top = 188.88268
-offset_right = 181.02475
-offset_bottom = 220.88268
-pivot_offset_ratio = Vector2(0.5, 0.5)
-tooltip_text = "Tone - Intensity: n, Relationships: n"
-mouse_filter = 1
-texture_normal = SubResource("DPITexture_2odi8")
-stretch_mode = 5
-script = ExtResource("2_qmuxa")
+[node name="ToneDot" parent="Dots" unique_id=1420629720 instance=ExtResource("3_v8qex")]
+layout_mode = 0
 dot_element = 3
 
-[node name="ColorDot" type="TextureButton" parent="Dots" unique_id=1220274248]
-self_modulate = Color(0.76862746, 0.34117648, 0.2901961, 1)
-layout_mode = 1
-offset_left = 74.97525
-offset_top = 188.88268
-offset_right = 106.97525
-offset_bottom = 220.88268
-pivot_offset_ratio = Vector2(0.5, 0.5)
-tooltip_text = "Color - Intensity: n, Relationships: n"
-mouse_filter = 1
-texture_normal = SubResource("DPITexture_2odi8")
-stretch_mode = 5
-script = ExtResource("2_qmuxa")
+[node name="ColorDot" parent="Dots" unique_id=875742874 instance=ExtResource("3_v8qex")]
+layout_mode = 0
 dot_element = 4
 
-[node name="MovementDot" type="TextureButton" parent="Dots" unique_id=1209581411]
-self_modulate = Color(0.3647059, 0.627451, 0.43137255, 1)
-layout_mode = 1
-offset_left = 28.806152
-offset_top = 130.98846
-offset_right = 60.806152
-offset_bottom = 162.98846
-pivot_offset_ratio = Vector2(0.5, 0.5)
-tooltip_text = "Movement - Intensity: n, Relationships: n"
-mouse_filter = 1
-texture_normal = SubResource("DPITexture_2odi8")
-stretch_mode = 5
-script = ExtResource("2_qmuxa")
+[node name="MovementDot" parent="Dots" unique_id=356858917 instance=ExtResource("3_v8qex")]
+layout_mode = 0
 dot_element = 5
 
-[node name="RhythmDot" type="TextureButton" parent="Dots" unique_id=318861353]
-self_modulate = Color(0.76862746, 0.6117647, 0.26666668, 1)
-layout_mode = 1
-offset_left = 45.2837
-offset_top = 58.795547
-offset_right = 77.2837
-offset_bottom = 90.79555
-pivot_offset_ratio = Vector2(0.5, 0.5)
-tooltip_text = "Rhythm - Intensity: n, Relationships: n"
-mouse_filter = 1
-texture_normal = SubResource("DPITexture_2odi8")
-stretch_mode = 5
-script = ExtResource("2_qmuxa")
+[node name="RhythmDot" parent="Dots" unique_id=1715708946 instance=ExtResource("3_v8qex")]
+layout_mode = 0
 dot_element = 6

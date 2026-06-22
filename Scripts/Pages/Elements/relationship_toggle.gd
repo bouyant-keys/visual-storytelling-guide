@@ -16,9 +16,9 @@ func _on_press() -> void:
 		ToggleState.NEUTRAL:
 			self_modulate = Color.WHITE
 		ToggleState.AFFINITY:
-			self_modulate = ConfigManager.RELATIONSHIP_AFFINITY_COLOR
+			self_modulate = ConfigManager.relationship_colors[0]
 		ToggleState.CONTRAST:
-			self_modulate = ConfigManager.RELATIONSHIP_CONTRAST_COLOR
+			self_modulate = ConfigManager.relationship_colors[1]
 
 func set_state(state:ToggleState) ->void:
 	button_state = state
@@ -26,6 +26,6 @@ func set_state(state:ToggleState) ->void:
 		ToggleState.NEUTRAL:
 			self_modulate = Color.WHITE
 		ToggleState.AFFINITY:
-			self_modulate = ConfigManager.RELATIONSHIP_AFFINITY_COLOR
+			self_modulate = ConfigManager.relationship_colors[0]
 		ToggleState.CONTRAST:
-			self_modulate = ConfigManager.RELATIONSHIP_CONTRAST_COLOR
+			self_modulate = ConfigManager.relationship_colors[1]

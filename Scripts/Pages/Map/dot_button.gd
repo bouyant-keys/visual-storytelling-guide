@@ -1,36 +1,39 @@
 class_name DotButton extends TextureButton
 
-const TOOLTIP_FORMAT := "%s - Intensity: %s, Relationships: %d."
+const TOOLTIP_FORMAT := "%s - Intensity: %s, Relationships: %d"
 
 var hovered : bool
 
 @export var dot_element : ConfigManager.VisualElements
 
+@onready var highlight_texture: TextureRect = $HighlightTexture
+
 signal dot_hovered(hovered:bool)
 signal dot_selected(dot_element:ConfigManager.VisualElements)
 
 func _ready() ->void:
-	pressed.connect(on_dot_pressed)
-	mouse_entered.connect(on_mouse_entered)
-	mouse_exited.connect(on_mouse_exited)
-	focus_entered.connect(on_mouse_entered)
-	focus_exited.connect(on_mouse_exited)
+	highlight_texture.hide()
 
+func _on_dot_down() -> void:
+	highlight_texture.self_modulate = Color.GRAY
 
 func on_dot_pressed() ->void:
 	dot_selected.emit(dot_element)
 
 func on_mouse_entered() ->void:
 	hovered = true
+	highlight_texture.self_modulate = Color.WHITE
+	highlight_texture.show()
 	dot_hovered.emit(true)
 
 func on_mouse_exited() ->void:
 	hovered = false
+	highlight_texture.hide()
 	dot_hovered.emit(false)
 
-func update_tooltip(e_name:String, e_intensity:int, e_relationships:int) ->void:
+func update_tooltip(e_relationships:int) ->void:
 	tooltip_text = TOOLTIP_FORMAT % [
-		e_name,
-		ConfigManager.INTENSITY_VALUES[e_intensity],
+		ConfigManager.get_element_name(dot_element),
+		ConfigManager.INTENSITY_VALUES[DataManager.get_element_intensities()[int(dot_element)]],
 		e_relationships
 		]

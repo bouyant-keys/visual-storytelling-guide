@@ -8,7 +8,8 @@ var current_file_access : FileAccessType
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	DataManager.open_file_dialog.connect(export_review)
+	DataManager.save_file_dialog.connect(export_review)
+	canceled.connect(DataManager.file_dialog_canceled)
 
 func export_graph() ->void:
 	current_file_access = FileAccessType.EXPORT_GRAPH

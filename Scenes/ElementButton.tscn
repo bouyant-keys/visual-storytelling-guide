@@ -2,10 +2,17 @@
 
 [ext_resource type="Theme" uid="uid://ctxtf6woho1hr" path="res://VSGTheme.tres" id="1_qhvhb"]
 [ext_resource type="Script" uid="uid://cnhcgb13qjwra" path="res://Scripts/Pages/Elements/element_button.gd" id="1_xf4kd"]
+[ext_resource type="ButtonGroup" uid="uid://b5sxb53c4tvrv" path="res://Scripts/element_button_group.tres" id="2_qhvhb"]
 
 [sub_resource type="DPITexture" id="DPITexture_wil6x"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".75\"/></svg>
 "
+fix_alpha_border = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pb32r"]
+draw_center = false
+border_width_left = 4
+border_color = Color(1, 1, 1, 1)
 
 [node name="ElementButton" type="Button" unique_id=1578117527]
 custom_minimum_size = Vector2(128, 48)
@@ -14,6 +21,7 @@ offset_bottom = 32.0
 mouse_filter = 1
 theme = ExtResource("1_qhvhb")
 toggle_mode = true
+button_group = ExtResource("2_qhvhb")
 script = ExtResource("1_xf4kd")
 
 [node name="IntensityBar" type="ProgressBar" parent="." unique_id=744103865]
@@ -58,4 +66,16 @@ offset_left = 8.0
 grow_vertical = 2
 text = "Element"
 
-[connection signal="button_down" from="." to="." method="_on_button_down"]
+[node name="SelectedBar" type="Panel" parent="." unique_id=2037671038]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pb32r")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]

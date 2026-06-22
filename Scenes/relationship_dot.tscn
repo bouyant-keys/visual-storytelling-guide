@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dvm53h584vjug"]
+
+[ext_resource type="Script" uid="uid://cdd47cocnhoxf" path="res://Scripts/Pages/Map/dot_button.gd" id="1_8hiy3"]
+
+[sub_resource type="DPITexture" id="DPITexture_2odi8"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\"/></svg>
+"
+base_scale = 2.0
+
+[sub_resource type="DPITexture" id="DPITexture_8hiy3"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\"/></svg>
+"
+base_scale = 2.0
+
+[node name="Dot" type="TextureButton" unique_id=1858458054]
+self_modulate = Color(0.3019608, 0.5137255, 0.76862746, 1)
+z_index = 5
+offset_right = 32.0
+offset_bottom = 32.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+tooltip_text = "Space - Intensity: n, Relationships: n"
+mouse_filter = 1
+texture_normal = SubResource("DPITexture_2odi8")
+stretch_mode = 5
+script = ExtResource("1_8hiy3")
+
+[node name="HighlightTexture" type="TextureRect" parent="." unique_id=1045522016]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("DPITexture_8hiy3")
+
+[connection signal="button_down" from="." to="." method="_on_dot_down"]
+[connection signal="focus_entered" from="." to="." method="on_mouse_entered"]
+[connection signal="focus_exited" from="." to="." method="on_mouse_exited"]
+[connection signal="mouse_entered" from="." to="." method="on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="on_dot_pressed"]

@@ -33,8 +33,6 @@ func _ready() -> void:
 		dot.dot_selected.connect(_on_dot_selected)
 		dot.dot_hovered.connect(_on_dot_hovered)
 		element_dots.append(dot)
-	
-	print("Ready Completed: ", self.get_instance_id())
 
 func _on_palette_changed() ->void:
 	legend_label.clear()
@@ -82,7 +80,6 @@ func _draw() ->void:
 		var dot_pos := Vector2(0.0, -1.0).rotated(i * (TAU/7.0))
 		dot_pos = (dot_pos * radius) + center
 		var dot_size = radius * dot_radius_ratios[e_intensities[i]]
-		print(dot_radius_ratios[e_intensities[i]])
 		
 		element_dots[i].size = Vector2(dot_size, dot_size)
 		element_dots[i].position = (dot_pos - element_dots[i].size/2.0)
@@ -98,14 +95,18 @@ func _draw() ->void:
 func draw_relationships(e_pos : Array[Vector2]) ->void:
 	var e_relationships : Array = DataManager.get_all_relationships()
 	for i : int in e_relationships.size():
+		var num_relationships := 0
 		for j : int in e_relationships[i].size():
 			match(int(e_relationships[i][j])):
 				0:
 					continue
 				1: # Affinity
 					draw_line(e_pos[i], e_pos[j], ConfigManager.relationship_colors[0], 2.0)
+					num_relationships += 1
 				2: # Contrast
 					draw_dashed_line(e_pos[i], e_pos[j], ConfigManager.relationship_colors[1], 2.0)
+					num_relationships += 1
+		element_dots[i].update_tooltip(num_relationships)
 
 func highlight_relationships(e_pos : Array[Vector2]) ->void:
 	var e_relationships : Array = DataManager.get_all_relationships()

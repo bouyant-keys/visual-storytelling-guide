@@ -4,6 +4,8 @@ const DEFAULT_RESOLUTION := Vector2i(512, 512)
 
 var export_image : Image
 
+@export var element_page : Page
+
 @onready var capture_viewport: SubViewport = %CaptureViewport
 @onready var export_panel: PanelContainer = %ExportPanel
 @onready var x_res_edit: SpinBox = %XResEdit
@@ -12,6 +14,8 @@ var export_image : Image
 @onready var graph_parent: Control = %GraphParent
 
 signal export_graph_to
+signal element_selected(element:ConfigManager.VisualElements)
+signal switch_page(page:Page)
 
 func _ready() ->void:
 	DataManager.graph_page = self
@@ -46,3 +50,8 @@ func _on_resolution_changed(_value:float) -> void:
 
 func _on_resolution_reset() ->void:
 	capture_viewport.size = DEFAULT_RESOLUTION
+
+
+func _on_relationship_graph_dot_selected(element: int) -> void:
+	element_selected.emit(element as ConfigManager.VisualElements)
+	switch_page.emit(element_page)

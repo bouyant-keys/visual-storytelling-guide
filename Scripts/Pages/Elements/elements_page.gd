@@ -13,6 +13,7 @@ var current_element := ConfigManager.VisualElements.SPACE
 @onready var operation_text_edit: TextEdit = %OperationTextEdit
 @onready var examples_text_edit: TextEdit = %ExamplesTextEdit
 @onready var intensity_strength: Label = %IntensityStrength
+@onready var h_separator: HSeparator = %HSeparator
 
 signal element_changed(element:ConfigManager.VisualElements)
 
@@ -22,16 +23,12 @@ func _ready() -> void:
 	page_key = DataManager.ELEMENTS_KEY
 	
 	DataManager.file_loaded.connect(on_file_loaded)
+	ConfigManager.palette_changed.connect(on_palette_changed)
 	operation_text_edit.text_changed.connect(on_operation_changed)
 	examples_text_edit.text_changed.connect(on_examples_changed)
 	
 	for button : ElementButton in element_buttons:
 		button.element_selected.connect(on_element_selected)
-		element_changed.connect(button._on_element_selected)
-		
-		# May cause issues later if grabbed before real data is loaded in???
-		var element_intensity = DataManager.get_element_data(button.element)[DataManager.E_INTENSITY_KEY]
-		button.update_intensity(element_intensity)
 	
 	for button : IntensityToggle in intensity_buttons:
 		button.intensity_changed.connect(on_intensity_changed)
@@ -47,6 +44,9 @@ func on_file_loaded() ->void:
 		var button_element_data := page_data[DataManager.get_visual_element_as_key(button.element)] as Dictionary
 		button.update_intensity(button_element_data[DataManager.E_INTENSITY_KEY])
 	
+	update_display()
+
+func on_palette_changed() ->void:
 	update_display()
 
 func on_element_selected(element:ConfigManager.VisualElements) ->void:
@@ -70,6 +70,7 @@ func update_display() ->void:
 	element_label.text = ConfigManager.get_element_name(current_element)
 	element_description.text = element_data[DataManager.E_DESCRIPTION_KEY] as String
 	element_texture.self_modulate = ConfigManager.get_element_color(current_element)
+	h_separator.self_modulate = ConfigManager.get_element_color(current_element)
 	
 	# Set custom values from loaded data:
 	set_intensity(element_data[DataManager.E_INTENSITY_KEY] as int)
@@ -81,17 +82,21 @@ func update_display() ->void:
 func on_intensity_changed(value:int) ->void:
 	element_data[DataManager.E_INTENSITY_KEY] = value
 	set_intensity(value)
+	DataManager.unsaved_changes.emit()
 
 func on_operation_changed() ->void:
 	var op_text = operation_text_edit.text
 	element_data[DataManager.E_OPERATION_KEY] = op_text
+	DataManager.unsaved_changes.emit()
 
 func relationship_changed(to_element:ConfigManager.VisualElements, state:RelationshipToggle.ToggleState) ->void:
 	DataManager.set_relationship_data(int(current_element), int(to_element), int(state))
+	DataManager.unsaved_changes.emit()
 
 func on_examples_changed() ->void:
 	var ex_text = examples_text_edit.text
 	element_data[DataManager.E_EXAMPLES_KEY] = ex_text
+	DataManager.unsaved_changes.emit()
 #endregion
 
 #region Setters

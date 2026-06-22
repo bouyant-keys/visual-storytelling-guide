@@ -21,6 +21,9 @@ var relationship_colors : Array[Color] = [Color("ae8a3e"), Color("be5448"), Colo
 signal palette_changed
 
 
+func _ready() -> void:
+	DataManager.file_loaded.connect(on_file_loaded)
+
 func on_file_loaded() ->void:
 	set_palette(DataManager.get_color_palette())
 
@@ -39,10 +42,18 @@ func get_element_colors() ->Array[Color]:
 
 func get_element_name(element:VisualElements) ->String:
 	return DataManager.E_ELEMENT_KEYS[int(element)]
+
+func get_color_palette_data() ->Dictionary:
+	for i : int in palette_data[DataManager.COL_APP_KEY].size():
+		palette_data[DataManager.COL_APP_KEY][i] = app_colors[i].to_html(false)
+	for i : int in palette_data[DataManager.COL_ELEMENT_KEY].size():
+		palette_data[DataManager.COL_ELEMENT_KEY][i] = element_colors[i].to_html(false)
+	for i : int in palette_data[DataManager.COL_RELATIONSHIP_KEY].size():
+		palette_data[DataManager.COL_RELATIONSHIP_KEY][i] = relationship_colors[i].to_html(false)
+	return palette_data
 #endregion
 
 #region Setters
-
 func set_palette(index:int) ->void:
 	current_palette = index
 	palette_data = DataManager.get_color_data()[current_palette]
@@ -55,6 +66,7 @@ func set_palette(index:int) ->void:
 	for value : String in palette_data[DataManager.COL_RELATIONSHIP_KEY]:
 		relationship_colors.append(Color(value))
 	
+	await get_tree().process_frame
 	palette_changed.emit()
 
 func create_new_palette(p_name:String) ->void:
@@ -69,10 +81,13 @@ func set_palette_name(p_name:String) ->void:
 
 func set_app_color(index:int, color:Color) ->void:
 	app_colors[index] = color
+	palette_changed.emit()
 
 func set_element_color(element:VisualElements, color:Color) ->void:
 	element_colors[int(element)] = color
+	palette_changed.emit()
 
 func set_relationship_color(index:int, color:Color) ->void:
 	relationship_colors[index] = color
+	palette_changed.emit()
 #endregion

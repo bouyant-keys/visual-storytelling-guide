@@ -20,6 +20,8 @@ func on_file_loaded() ->void:
 
 func on_strategy_changed() ->void:
 	page_data[DataManager.SY_STRATEGY_KEY] = strategy_text_edit.text
+	DataManager.unsaved_changes.emit()
 
 func on_angle_changed() ->void:
 	page_data[DataManager.SY_ANGLE_KEY] = angle_text_edit.text
+	DataManager.unsaved_changes.emit()
