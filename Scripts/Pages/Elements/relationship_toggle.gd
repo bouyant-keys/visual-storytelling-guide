@@ -2,30 +2,16 @@ class_name RelationshipToggle extends Button
 
 
 @export var button_element : ConfigManager.VisualElements
+@export var button_state := ConfigManager.RelationshipState.NEUTRAL
 
-enum ToggleState { NEUTRAL, AFFINITY, CONTRAST }
-@export var button_state := ToggleState.NEUTRAL
-
-signal state_changed(element:ConfigManager.VisualElements, state:ToggleState)
+signal state_changed(element:ConfigManager.VisualElements, state:ConfigManager.RelationshipState)
 
 func _on_press() -> void:
-	button_state = posmod(button_state + 1, 3) as ToggleState
+	button_state = posmod(button_state + 1, 3) as ConfigManager.RelationshipState
 	state_changed.emit(button_element, button_state)
 	
-	match(button_state):
-		ToggleState.NEUTRAL:
-			self_modulate = Color.WHITE
-		ToggleState.AFFINITY:
-			self_modulate = ConfigManager.relationship_colors[0]
-		ToggleState.CONTRAST:
-			self_modulate = ConfigManager.relationship_colors[1]
+	self_modulate = ConfigManager.get_relationship_color(button_state)
 
-func set_state(state:ToggleState) ->void:
+func set_state(state:ConfigManager.RelationshipState) ->void:
 	button_state = state
-	match(button_state):
-		ToggleState.NEUTRAL:
-			self_modulate = Color.WHITE
-		ToggleState.AFFINITY:
-			self_modulate = ConfigManager.relationship_colors[0]
-		ToggleState.CONTRAST:
-			self_modulate = ConfigManager.relationship_colors[1]
+	self_modulate = ConfigManager.get_relationship_color(button_state)

@@ -2,13 +2,13 @@
 	"Project" : {
 		"Author" : "",
 		"CreationDate" : "",
-		"PaletteIndex" : 0,
+		"PaletteIndex" : -1,
 		"CustomColors": [
 			{
-				"Palette" : "Default",
+				"Palette" : "Custom",
 				"AppColors" : ["0f1118", "161925", "272d42", "4d83c4"],
 				"ElementColors:" : ["4d83c4", "c9a96e", "9175d4", "7ab5c9", "c4574a", "5da06e", "c49c44"],
-				"RelationshipColors" : ["ae8a3e", "be5448", "272d42"],
+				"RelationshipColors" : ["272d42", "ae8a3e", "be5448"],
 			},
 		],
 	},

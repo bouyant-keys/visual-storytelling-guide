@@ -10,6 +10,18 @@
 [ext_resource type="FontFile" uid="uid://cl7c4ms8qlbqm" path="res://Fonts/JetBrains_Mono/static/JetBrainsMono-LightItalic.ttf" id="4_ri0dv"]
 [ext_resource type="StyleBox" uid="uid://c7cifammef0tq" path="res://Materials/DefaultPanel.tres" id="8_4yyan"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jq4w8"]
+bg_color = Color(0.039215688, 0.050980393, 0.07058824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4862745, 0.49411765, 0.5019608, 1)
+expand_margin_left = 12.0
+expand_margin_top = 36.0
+expand_margin_right = 12.0
+expand_margin_bottom = 12.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vi02w"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 2
@@ -52,6 +64,8 @@ corner_detail = 5
 [resource]
 default_font = ExtResource("1_1w2cu")
 default_font_size = 14
+AcceptDialog/styles/embedded_border = SubResource("StyleBoxFlat_jq4w8")
+AcceptDialog/styles/panel = ExtResource("4_3it2v")
 Button/font_sizes/font_size = 14
 Button/fonts/font = ExtResource("1_1w2cu")
 Button/styles/disabled = ExtResource("2_3it2v")
@@ -61,9 +75,10 @@ Button/styles/normal = ExtResource("3_4yyan")
 Button/styles/pressed = ExtResource("4_3it2v")
 HeaderPanel/base_type = &"Panel"
 HeaderPanel/styles/panel = ExtResource("2_vi02w")
+Label/colors/font_color = Color(0.8560673, 0.8560673, 0.85606724, 1)
 Label/font_sizes/font_size = 14
 Label/fonts/font = ExtResource("1_1w2cu")
-LineEdit/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+LineEdit/colors/font_color = Color(1, 1, 1, 1)
 LineEdit/colors/font_placeholder_color = Color(1, 1, 1, 0.43529412)
 LineEdit/colors/selection_color = Color(0.5, 0.5, 0.5, 1)
 LineEdit/fonts/font = ExtResource("1_1w2cu")
@@ -82,6 +97,7 @@ PopupMenu/styles/hover = ExtResource("2_vi02w")
 PopupMenu/styles/panel = ExtResource("2_3it2v")
 ProgressBar/styles/background = ExtResource("2_vi02w")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_vi02w")
+RichTextLabel/colors/default_color = Color(0.85490197, 0.85490197, 0.85490197, 1)
 RichTextLabel/font_sizes/bold_font_size = 14
 RichTextLabel/font_sizes/bold_italics_font_size = 14
 RichTextLabel/font_sizes/italics_font_size = 14
@@ -98,6 +114,7 @@ TabBar/styles/tab_disabled = ExtResource("8_4yyan")
 TabBar/styles/tab_hovered = SubResource("StyleBoxFlat_3it2v")
 TabBar/styles/tab_selected = SubResource("StyleBoxFlat_bo1nx")
 TabBar/styles/tab_unselected = SubResource("StyleBoxFlat_4yyan")
+TextEdit/colors/font_color = Color(1, 1, 1, 1)
 TextEdit/font_sizes/font_size = 14
 TextEdit/fonts/font = ExtResource("1_1w2cu")
 TextEdit/styles/focus = ExtResource("2_3it2v")

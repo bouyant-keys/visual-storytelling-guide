@@ -44,8 +44,8 @@ func _on_palette_changed() ->void:
 		legend_label.append_text(dot_label)
 	
 	key_label.text = KEY_FORMAT % [
-		ConfigManager.relationship_colors[0].to_html(false),
-		ConfigManager.relationship_colors[1].to_html(false)]
+		ConfigManager.get_relationship_color(ConfigManager.RelationshipState.AFFINITY).to_html(false),
+		ConfigManager.get_relationship_color(ConfigManager.RelationshipState.CONTRAST).to_html(false)]
 	
 	queue_redraw()
 
@@ -65,7 +65,6 @@ func _on_dot_selected(element:ConfigManager.VisualElements) ->void:
 	dot_selected.emit(element)
 
 func _draw() ->void:
-	print("Drawing: ", get_instance_id())
 	var e_colors := ConfigManager.get_element_colors()
 	var e_intensities := DataManager.get_element_intensities()
 	
@@ -101,10 +100,10 @@ func draw_relationships(e_pos : Array[Vector2]) ->void:
 				0:
 					continue
 				1: # Affinity
-					draw_line(e_pos[i], e_pos[j], ConfigManager.relationship_colors[0], 2.0)
+					draw_line(e_pos[i], e_pos[j], ConfigManager.get_relationship_color(ConfigManager.RelationshipState.AFFINITY), 2.0)
 					num_relationships += 1
 				2: # Contrast
-					draw_dashed_line(e_pos[i], e_pos[j], ConfigManager.relationship_colors[1], 2.0)
+					draw_dashed_line(e_pos[i], e_pos[j], ConfigManager.get_relationship_color(ConfigManager.RelationshipState.CONTRAST), 2.0)
 					num_relationships += 1
 		element_dots[i].update_tooltip(num_relationships)
 
@@ -128,6 +127,6 @@ func highlight_relationships(e_pos : Array[Vector2]) ->void:
 			0:
 				continue
 			1: # Affinity
-				draw_line(e_pos[highlighted_dot], e_pos[i], ConfigManager.relationship_colors[0], 2.0)
+				draw_line(e_pos[highlighted_dot], e_pos[i], ConfigManager.get_relationship_color(ConfigManager.RelationshipState.AFFINITY), 2.0)
 			2: # Contrast
-				draw_dashed_line(e_pos[highlighted_dot], e_pos[i], ConfigManager.relationship_colors[1], 2.0)
+				draw_dashed_line(e_pos[highlighted_dot], e_pos[i], ConfigManager.get_relationship_color(ConfigManager.RelationshipState.CONTRAST), 2.0)

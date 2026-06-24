@@ -89,7 +89,7 @@ func on_operation_changed() ->void:
 	element_data[DataManager.E_OPERATION_KEY] = op_text
 	DataManager.unsaved_changes.emit()
 
-func relationship_changed(to_element:ConfigManager.VisualElements, state:RelationshipToggle.ToggleState) ->void:
+func relationship_changed(to_element:ConfigManager.VisualElements, state:ConfigManager.RelationshipState) ->void:
 	DataManager.set_relationship_data(int(current_element), int(to_element), int(state))
 	DataManager.unsaved_changes.emit()
 
@@ -122,6 +122,6 @@ func set_relationships(rel_values:Array) ->void:
 		if button.button_element == current_element:
 			button.hide()
 		else:
-			button.set_state(int(rel_values[i]) as RelationshipToggle.ToggleState)
+			button.set_state(int(rel_values[i]) as ConfigManager.RelationshipState)
 			button.show()
 #endregion

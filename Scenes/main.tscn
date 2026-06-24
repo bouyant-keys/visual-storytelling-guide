@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://ha3jot66ngcp" path="res://Scenes/synthesis_page.tscn" id="6_344ge"]
 [ext_resource type="Script" uid="uid://dlgijxso567lc" path="res://Scripts/file_dialog.gd" id="8_344ge"]
 [ext_resource type="PackedScene" uid="uid://dkjp1i8v30ttw" path="res://Scenes/config_page.tscn" id="8_ynf5e"]
+[ext_resource type="Script" uid="uid://bx5jsd78anqdi" path="res://Scripts/unsaved_popup.gd" id="9_hptm8"]
+[ext_resource type="Script" uid="uid://bkxclkox6omgh" path="res://Scripts/quit_dialog.gd" id="11_d1ilt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynf5e"]
 bg_color = Color(0.05882353, 0.06666667, 0.09411765, 1)
@@ -255,6 +257,36 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
+[node name="UnsavedPopup" type="PanelContainer" parent="Application" unique_id=1518862451]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_hptm8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Application/UnsavedPopup" unique_id=861149341]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Application/UnsavedPopup/VBoxContainer" unique_id=1953204636]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Application/UnsavedPopup/VBoxContainer" unique_id=1658716180]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Application/UnsavedPopup/VBoxContainer/HBoxContainer" unique_id=782002270]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="Application/UnsavedPopup/VBoxContainer/HBoxContainer" unique_id=1633454021]
+layout_mode = 2
+
 [node name="FileDialog" type="FileDialog" parent="." unique_id=1480375612]
 unique_name_in_owner = true
 oversampling_override = 1.0
@@ -263,6 +295,18 @@ filters = PackedStringArray("*.txt", "*.json", "*.JSON")
 use_native_dialog = true
 script = ExtResource("8_344ge")
 
+[node name="QuitDialog" type="AcceptDialog" parent="." unique_id=1456130781]
+unique_name_in_owner = true
+oversampling_override = 1.0
+title = "Warning"
+position = Vector2i(0, 36)
+size = Vector2i(524, 100)
+theme = ExtResource("1_8gbba")
+ok_button_text = "Save & Quit"
+dialog_text = "You have unsaved changes. Do you want to save before quitting?
+(Unsaved changes will be lost.)"
+script = ExtResource("11_d1ilt")
+
 [connection signal="tab_changed" from="Application/Header/TabControl/TabBar" to="Application/Header/PageManager" method="_on_tab_changed"]
 [connection signal="pressed" from="Application/Header/TabControl/ImportButton" to="FileDialog" method="import_review"]
 [connection signal="pressed" from="Application/Header/TabControl/ExportButton" to="FileDialog" method="export_review"]
@@ -270,3 +314,7 @@ script = ExtResource("8_344ge")
 [connection signal="export_graph_to" from="Application/Header/PageManager/MapPage" to="FileDialog" method="export_graph"]
 [connection signal="switch_page" from="Application/Header/PageManager/MapPage" to="Application/Header/PageManager" method="switch_page"]
 [connection signal="file_selected" from="FileDialog" to="FileDialog" method="_on_file_selected"]
+[connection signal="confirmed" from="QuitDialog" to="FileDialog" method="export_review"]
+[connection signal="confirmed" from="QuitDialog" to="QuitDialog" method="_on_confirmed"]
+[connection signal="custom_action" from="QuitDialog" to="QuitDialog" method="_on_custom_action"]
+[connection signal="save_file_dialog" from="QuitDialog" to="FileDialog" method="export_review"]

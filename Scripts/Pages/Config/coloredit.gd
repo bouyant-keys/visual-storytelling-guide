@@ -40,6 +40,7 @@ func _on_palette_changed() ->void:
 	elif element_color_index > -1:
 		color_picker.color = ConfigManager.element_colors[color_index]
 	elif relationship_color_index > -1:
+		print("ColorPicker on_palette_changed()!")
 		color_picker.color = ConfigManager.relationship_colors[color_index]
 
 func _on_color_changed(color: Color) -> void:

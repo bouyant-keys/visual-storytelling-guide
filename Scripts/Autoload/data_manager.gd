@@ -47,6 +47,7 @@ signal load_file_dialog
 signal file_loaded
 signal file_saved
 signal unsaved_changes
+signal quit_dialog
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -75,14 +76,10 @@ func _unhandled_input(event: InputEvent) -> void:
 # Source: https://forum.godotengine.org/t/best-ways-to-save-on-quit/40825/3
 func _notification(notif: int) -> void:
 	if notif == NOTIFICATION_WM_CLOSE_REQUEST:
-		print("Quitting")
-		queue_quit = true
-		if quicksave_path.is_empty():
-			print("Here")
-			save_file_dialog.emit()
-		else:
-			print("Over Here")
-			save_file(quicksave_path)
+		quit_dialog.emit()
+
+func quit() ->void:
+	get_tree().quit()
 
 #region Save & Load
 func load_file(path:String) ->void:
@@ -93,7 +90,6 @@ func load_file(path:String) ->void:
 	if error == OK:
 		print("Read in default data.")
 		def_data = json.data
-		print('\n\n',def_data)
 	
 	var file_data : Dictionary
 	if FileAccess.file_exists(path):
@@ -103,7 +99,6 @@ func load_file(path:String) ->void:
 		if error == OK:
 			print("File read successfully!")
 			file_data = json.data
-			print('\n\n', file_data)
 			quicksave_path = path
 		file.close()
 	else:
@@ -133,6 +128,8 @@ func save_file(path:String) ->void:
 	var palette_data := ConfigManager.get_color_palette_data()
 	print(palette_data)
 	data[PROJECT_KEY][P_CUSTOMCOLORS_KEY][0] = palette_data
+	
+	print("Save Data:\n", data)
 	
 	# Convert data into file & save to path
 	var file = FileAccess.open(path, FileAccess.WRITE)
@@ -167,6 +164,9 @@ func save_graph(path:String) ->void:
 		print("Error: ", error)
 	else:
 		print("Graph saved to " + (path) + " successfully!")
+
+func quicksave() ->void:
+	save_file(quicksave_path)
 
 func file_dialog_canceled() ->void:
 	if queue_quit:
@@ -203,8 +203,11 @@ func get_element_relationships(e:ConfigManager.VisualElements) ->Array[int]:
 func get_all_relationships() ->Array:
 	return data[MAP_KEY][M_RELATIONSHIPS_KEY]
 
-func get_color_palette() ->int:
+func get_last_palette_index() ->int:
 	return int(data[PROJECT_KEY][P_PALETTEINDEX])
+
+func get_palette(palette_index:int) ->Dictionary:
+	return data[PROJECT_KEY][P_CUSTOMCOLORS_KEY][palette_index]
 
 ## Returns array of all color palettes.
 func get_color_data() ->Array:
